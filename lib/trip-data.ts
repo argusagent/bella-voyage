@@ -83,10 +83,10 @@ export type WineTour = {
 export const trip = {
   startDate: "2026-06-03",
   endDate: "2026-06-11",
-  nights: 8,
+  nights: 7, // hotel nights (the overnight Atlantic flight is not counted)
   cities: ["paris", "beaune", "lausanne"] as City[],
   hero: {
-    eyebrow: "An eight-night journey",
+    eyebrow: "A seven-night journey",
     title: { lines: ["Paris,", "Beaune &", "Lausanne"], italicWord: "&" },
     sub: "Three cities, in early June.",
   },

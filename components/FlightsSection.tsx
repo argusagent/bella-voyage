@@ -10,24 +10,24 @@ import {
 } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
-// Wings — flight cards in a boarding-pass aesthetic.  Each card is fully
+// Flights — boarding-pass-style flight cards.  Each card is fully
 // keyboard-focusable.  On mobile the card stacks vertically (origin block
 // on top, dotted divider, destination on bottom).  On desktop the two
 // blocks sit side-by-side with the duration centered between them.
 
-export function WingsSection() {
+export function FlightsSection() {
   if (flights.length === 0) return null;
 
   return (
     <section
-      id="wings"
+      id="flights"
       aria-label="The flights"
       className="bg-paper-bone px-6 py-20 sm:px-10 sm:py-28"
     >
       <div className="mx-auto max-w-5xl">
         <SectionHeader
-          number="03"
-          eyebrow="Wings"
+          number="04"
+          eyebrow="Flights"
           title={
             <>
               Two long flights, <em className="italic text-gold">east and west.</em>

@@ -26,19 +26,19 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bella-voyage.vercel.app"),
-  title: "Bella's Voyage — Paris, Beaune & Lausanne · June 2026",
+  title: "Bella's Graduation Voyage — Paris, Beaune & Lausanne · June 2026",
   description:
-    "An eight-night journey through Paris, Beaune & Lausanne — June 3–11, 2026.",
+    "Seven nights, three cities — Paris, Beaune & Lausanne, June 3–11, 2026.",
   openGraph: {
-    title: "Bella's Voyage — Paris, Beaune & Lausanne · June 2026",
-    description: "An eight-night journey, in three cities.",
+    title: "Bella's Graduation Voyage — Paris, Beaune & Lausanne · June 2026",
+    description: "Seven nights, three cities, one long table after another.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bella's Voyage — Paris, Beaune & Lausanne · June 2026",
-    description: "An eight-night journey, in three cities.",
+    title: "Bella's Graduation Voyage — Paris, Beaune & Lausanne · June 2026",
+    description: "Seven nights, three cities, one long table after another.",
   },
   icons: {
     icon: "/favicon.svg",

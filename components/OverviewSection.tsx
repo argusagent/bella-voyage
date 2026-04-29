@@ -2,13 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import {
-  trip,
-  cityMeta,
-  flights,
-  stays,
-  timeline,
-} from "@/lib/trip-data";
+import { trip, cityMeta, flights, timeline } from "@/lib/trip-data";
 import { SectionHeader } from "./SectionHeader";
 
 // Overview — at-a-glance signal: a four-stat grid up top, then the
@@ -50,7 +44,6 @@ export function OverviewSection() {
         <div className="mt-14 grid gap-3 sm:gap-4 md:grid-cols-3">
           {trip.cities.map((c, i) => {
             const m = cityMeta[c];
-            const stay = stays.find((s) => s.city === c);
             return (
               <a
                 key={c}

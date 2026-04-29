@@ -8,6 +8,7 @@
 //   • after   → "welcome home"
 
 import { trip } from "./trip-data";
+import { parseDateOnly } from "./format";
 
 export type CountdownState =
   | { phase: "before"; daysUntil: number }
@@ -16,8 +17,8 @@ export type CountdownState =
 
 export function getCountdownState(now: Date = new Date()): CountdownState {
   const today = startOfLocalDay(now);
-  const start = parseDateOnlyLocal(trip.startDate);
-  const end = parseDateOnlyLocal(trip.endDate);
+  const start = parseDateOnly(trip.startDate);
+  const end = parseDateOnly(trip.endDate);
 
   const totalDays = daysBetween(start, end) + 1;
 
@@ -63,12 +64,6 @@ function startOfLocalDay(d: Date): Date {
   return new Date(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
-function parseDateOnlyLocal(iso: string): Date {
-  const [y, m, d] = iso.slice(0, 10).split("-").map(Number);
-  return new Date(y, m - 1, d);
-}
-
 function daysBetween(a: Date, b: Date): number {
-  const ms = b.getTime() - a.getTime();
-  return Math.round(ms / 86_400_000);
+  return Math.round((b.getTime() - a.getTime()) / 86_400_000);
 }

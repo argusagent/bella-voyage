@@ -32,7 +32,17 @@ export function Countdown({
   const [state, setState] = useState<CountdownState | null>(null);
 
   useEffect(() => {
-    const update = () => setState(getCountdownState());
+    // Guard against same-value updates so the hourly tick doesn't
+    // re-render the rest of the page when the displayed string is
+    // identical (true for the 23 hours between midnight rollovers).
+    let last: string | null = null;
+    const update = () => {
+      const next = getCountdownState();
+      const key = JSON.stringify(next);
+      if (key === last) return;
+      last = key;
+      setState(next);
+    };
     update();
     const id = setInterval(update, 60 * 60 * 1000);
     return () => clearInterval(id);

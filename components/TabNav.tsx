@@ -5,6 +5,9 @@ import { cn } from "@/lib/format";
 
 type Tab = { id: string; label: string };
 
+const SCROLLSPY_THRESHOLDS = [0, 0.25, 0.5, 0.75, 1];
+const SCROLLSPY_ROOT_MARGIN = "-30% 0% -55% 0%";
+
 // TabNav — sticky horizontal navigation that:
 //   • smoothly scrolls to the matching <section id={tab.id}> on click,
 //     accounting for its own sticky height so the section header lands
@@ -72,8 +75,8 @@ export function TabNav({
       },
       {
         // Sliver in the upper-middle of the viewport is what counts as "current".
-        rootMargin: "-30% 0% -55% 0%",
-        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: SCROLLSPY_ROOT_MARGIN,
+        threshold: SCROLLSPY_THRESHOLDS,
       }
     );
     sections.forEach((s) => io.observe(s));

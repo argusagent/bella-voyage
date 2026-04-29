@@ -20,6 +20,28 @@ import {
 } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
+// Pre-bucketed by date so DayRow doesn't re-filter the full arrays on
+// every parent render (the toggle state lives on the parent).  The
+// underlying arrays are static module data — bucketing once at import
+// is correct and the memory footprint is negligible.
+const RESTAURANTS_BY_DATE = groupByDate(restaurants);
+const ACTIVITIES_BY_DATE = groupByDate(activities);
+const WINE_TOURS_BY_DATE = groupByDate(wineTours);
+const NO_RESTAURANTS: readonly Restaurant[] = [];
+const NO_ACTIVITIES: readonly Activity[] = [];
+const NO_WINE_TOURS: readonly WineTour[] = [];
+
+function groupByDate<T extends { date?: string }>(items: T[]): Map<string, T[]> {
+  const map = new Map<string, T[]>();
+  for (const item of items) {
+    if (!item.date) continue;
+    const arr = map.get(item.date);
+    if (arr) arr.push(item);
+    else map.set(item.date, [item]);
+  }
+  return map;
+}
+
 // Itinerary — the day-by-day timeline.  Each row is an expandable button
 // (Enter/Space/click), with `aria-expanded` and `aria-controls`.  The
 // expansion shows three layered groups in fixed order:
@@ -113,10 +135,9 @@ function DayRow({
   const cityName = cityMeta[day.city].name;
   const id = useId();
 
-  // Per-date associations.  Empty arrays render nothing.
-  const dayRestaurants = restaurants.filter((r) => r.date === day.date);
-  const dayActivities = activities.filter((a) => a.date === day.date);
-  const dayWineTours = wineTours.filter((w) => w.date === day.date);
+  const dayRestaurants = RESTAURANTS_BY_DATE.get(day.date) ?? NO_RESTAURANTS;
+  const dayActivities = ACTIVITIES_BY_DATE.get(day.date) ?? NO_ACTIVITIES;
+  const dayWineTours = WINE_TOURS_BY_DATE.get(day.date) ?? NO_WINE_TOURS;
   const hasExtras =
     (day.highlights?.length ?? 0) +
       dayRestaurants.length +

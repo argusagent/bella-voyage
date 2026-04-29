@@ -16,7 +16,7 @@ export function Footer() {
         </p>
 
         <p className="max-w-md font-serif text-base font-light leading-relaxed text-ink/65 sm:text-lg">
-          eight nights, three cities, one long table after another.
+          seven nights, three cities, one long table after another.
           <br className="hidden sm:block" />
           See you at gate <span className="text-gold">B22</span>.
         </p>

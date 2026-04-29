@@ -12,7 +12,7 @@ import {
 } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
-// Stays — one expanded card per hotel.  Each card has:
+// Lodging — one expanded card per hotel.  Each card has:
 //   • a media region — Embla snap-carousel on mobile (touch swipe), grid
 //     on desktop.  When `images` is empty, an elegant gradient placeholder
 //     stands in (the data file may not have photos yet).
@@ -20,18 +20,18 @@ import { SectionHeader } from "./SectionHeader";
 //   • an anchor id (`stay-paris`, `stay-beaune`, `stay-lausanne`) so the
 //     Cities section can deep-scroll to it.
 
-export function StaysSection() {
+export function LodgingSection() {
   if (stays.length === 0) return null;
   return (
     <section
-      id="stays"
-      aria-label="The stays"
+      id="lodging"
+      aria-label="Lodging"
       className="bg-paper-warm px-6 py-20 sm:px-10 sm:py-28"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          number="05"
-          eyebrow="The stays"
+          number="03"
+          eyebrow="Lodging"
           title={
             <>
               Three rooms, <em className="italic text-gold">held.</em>

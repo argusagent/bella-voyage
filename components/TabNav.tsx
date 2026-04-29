@@ -19,7 +19,13 @@ type Tab = { id: string; label: string };
 // The sticky offset (`--tabnav-h`) is published as a CSS var on the bar
 // so any anchor scroll target can subtract it via scroll-margin-top.
 
-export function TabNav({ tabs }: { tabs: Tab[] }) {
+export function TabNav({
+  tabs,
+  trailingSlot,
+}: {
+  tabs: Tab[];
+  trailingSlot?: React.ReactNode;
+}) {
   const [active, setActive] = useState<string>(tabs[0]?.id ?? "");
   const [stuck, setStuck] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
@@ -132,13 +138,14 @@ export function TabNav({ tabs }: { tabs: Tab[] }) {
         )}
         style={{ ["--tabnav-h" as string]: "56px" }}
       >
-        <div
-          ref={barRef}
-          role="tablist"
-          aria-label="Trip sections"
-          onKeyDown={onKey}
-          className="no-scrollbar mx-auto flex h-14 max-w-6xl items-stretch gap-1 overflow-x-auto px-4 sm:gap-2 sm:px-8"
-        >
+        <div className="mx-auto flex h-14 max-w-6xl items-stretch px-4 sm:px-8">
+          <div
+            ref={barRef}
+            role="tablist"
+            aria-label="Trip sections"
+            onKeyDown={onKey}
+            className="no-scrollbar flex min-w-0 flex-1 items-stretch gap-1 overflow-x-auto sm:gap-2"
+          >
           {tabs.map((tab) => {
             const isActive = active === tab.id;
             return (
@@ -171,6 +178,17 @@ export function TabNav({ tabs }: { tabs: Tab[] }) {
               </a>
             );
           })}
+          </div>
+          {trailingSlot ? (
+            <div className="ml-2 flex shrink-0 items-center pl-2 sm:ml-3 sm:pl-3">
+              {/* Subtle gradient mask so scrolling tabs fade behind the slot */}
+              <span
+                aria-hidden
+                className="-ml-6 h-full w-6 bg-gradient-to-r from-transparent to-paper/85"
+              />
+              {trailingSlot}
+            </div>
+          ) : null}
         </div>
       </div>
 

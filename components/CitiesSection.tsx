@@ -37,7 +37,7 @@ export function CitiesSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          number="01"
+          number="02"
           eyebrow="The cities"
           title={
             <>

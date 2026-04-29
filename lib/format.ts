@@ -83,7 +83,7 @@ export function cn(...args: Array<string | false | null | undefined>): string {
 
 // "2026-06-04" → Date at local midnight (avoids the off-by-one
 // from `new Date("2026-06-04")` parsing as UTC midnight in -ve TZ).
-function parseDateOnly(iso: string): Date {
+export function parseDateOnly(iso: string): Date {
   const [y, m, d] = iso.slice(0, 10).split("-").map(Number);
   return new Date(y, m - 1, d);
 }

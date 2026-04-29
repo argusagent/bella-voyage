@@ -65,7 +65,7 @@ export default function Landing() {
         {/* City flow with country subtitles */}
         <div className="mx-auto mt-10 flex max-w-2xl flex-col items-center gap-4 sm:mt-14 sm:flex-row sm:justify-center sm:gap-2">
           {cityFlow.map((c, i) => (
-            <div key={c.city} className="contents sm:contents">
+            <div key={c.city} className="contents">
               <div className="flex flex-col items-center">
                 <span className="font-serif text-[clamp(28px,5.5vw,40px)] font-light leading-none text-ink">
                   {c.label}

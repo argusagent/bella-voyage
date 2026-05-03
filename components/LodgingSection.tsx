@@ -30,7 +30,7 @@ export function LodgingSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeader
-          number="03"
+          number="02"
           eyebrow="Lodging"
           title={
             <>

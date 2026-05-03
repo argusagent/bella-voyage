@@ -5,21 +5,22 @@ import { useRef } from "react";
 import { trip, cityMeta, flights, timeline } from "@/lib/trip-data";
 import { SectionHeader } from "./SectionHeader";
 
-// Overview — at-a-glance signal: a four-stat grid up top, then the
+// Trip — at-a-glance signal: a four-stat grid up top, then the
 // west-to-east-and-back route ribbon (vertical on mobile, horizontal
-// on desktop) with each leg labelled.
+// on desktop) with each leg labelled.  This is the landing tab — the
+// QR code drops Bella here.
 
-export function OverviewSection() {
+export function TripSection() {
   return (
     <section
-      id="overview"
-      aria-label="Overview"
+      id="trip"
+      aria-label="Trip"
       className="bg-paper-bone px-6 py-20 sm:px-10 sm:py-28"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeader
           number="01"
-          eyebrow="Overview"
+          eyebrow="Trip"
           title={
             <>
               The shape of <em className="italic text-gold">the trip.</em>
@@ -40,14 +41,15 @@ export function OverviewSection() {
           <RouteRibbon />
         </div>
 
-        {/* City quick-summary */}
+        {/* City quick-summary — each row deep-links straight to that
+            city's row in Lodging. */}
         <div className="mt-14 grid gap-3 sm:gap-4 md:grid-cols-3">
           {trip.cities.map((c, i) => {
             const m = cityMeta[c];
             return (
               <a
                 key={c}
-                href="#cities"
+                href={`#stay-${c}`}
                 className="group flex items-baseline justify-between gap-3 border-t border-line py-4 transition-colors hover:bg-paper sm:py-5"
               >
                 <div>

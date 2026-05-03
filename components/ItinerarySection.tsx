@@ -84,7 +84,7 @@ function ItineraryInner() {
     >
       <div className="mx-auto max-w-5xl">
         <SectionHeader
-          number="05"
+          number="04"
           eyebrow="Itinerary"
           title={
             <>

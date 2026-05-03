@@ -94,7 +94,7 @@ export function Hero() {
 
         {/* Scroll cue */}
         <motion.a
-          href="#overview"
+          href="#trip"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 2 }}

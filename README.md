@@ -4,10 +4,10 @@ Seven nights, three cities — Paris, Beaune & Lausanne, June 3 – 11, 2026.
 
 Live: https://bella-voyage.vercel.app
 
-| Route          | What it is                                                       |
-| -------------- | ---------------------------------------------------------------- |
-| `/`            | The QR-target landing — vineyard hero, countdown, single CTA     |
-| `/trip`        | Full itinerary site (Overview · Cities · Lodging · Flights · Itinerary) |
+| Route   | What it is                                                                         |
+| ------- | ---------------------------------------------------------------------------------- |
+| `/`     | The main site — Hero + four-tab nav: **Trip · Lodging · Flights · Itinerary**.  This is the QR-code target. |
+| `/qr`   | Printable QR-code card.  Server-renders the QR for `/` inline + offers SVG/PNG download + Print. |
 
 ---
 
@@ -18,6 +18,7 @@ Live: https://bella-voyage.vercel.app
 - **next/font** — Cormorant Garamond (serif), Manrope (sans), JetBrains Mono (mono)
 - **Framer Motion** — restrained: hero reveals, scroll-fades, route transitions
 - **Embla Carousel** — mobile photo galleries (grid on desktop)
+- **qrcode** — server-rendered QR code on `/qr`; static SVG/PNG copies in `public/`
 - **Vercel** — auto-deploys every push to `master`
 
 ## Editing trip content
@@ -25,12 +26,11 @@ Live: https://bella-voyage.vercel.app
 **All trip content lives in [`lib/trip-data.ts`](./lib/trip-data.ts).** Editing
 this file is how the site changes — components don't need touching.
 
-The `/trip` page renders five sections, in order:
+The home page renders four sections, in order:
 
 | Section       | Drives from                            | Notes                                                                            |
 | ------------- | -------------------------------------- | -------------------------------------------------------------------------------- |
-| Overview      | `trip`, `flights`, `stays`, `timeline` | At-a-glance stats + the route ribbon (Air → Rail → Rail → Air)                  |
-| Cities        | `cityMeta`, `stays`                    | Three cards; tapping a card deep-scrolls to that city's room in Lodging          |
+| Trip          | `trip`, `flights`, `stays`, `timeline` | The landing tab.  Stats grid (days/nights/cities/flights) + route ribbon (Air → Rail → Rail → Air) + city quick-summary that deep-links to Lodging rows. |
 | Lodging       | `stays`                                | One expanded card per hotel — Embla on mobile, grid on desktop, gradient placeholders if no images |
 | Flights       | `flights`                              | Boarding-pass cards, mobile-stacks vertically                                    |
 | Itinerary     | `timeline` + `restaurants` + `activities` + `wineTours` | Each day expandable; restaurants/activities/wine tours fold in **by date** as Tables / Sights / Vineyards subgroups |
@@ -135,6 +135,23 @@ from `new Date()`:
 | `before` | today < `trip.startDate`      | `35 days away`      |
 | `live`   | start ≤ today ≤ end           | `Day 4 of 9`        |
 | `after`  | today > `trip.endDate`        | `home`              |
+
+## QR code
+
+The QR code that opens the live site is **already generated** and lives at
+`public/bella-voyage-qr.{svg,png}`.  Visit `/qr` on the deployed site for
+a printable card (server-renders the same QR inline, with download +
+print buttons).
+
+If the production URL ever changes, regenerate:
+
+```
+npm run gen:qr
+```
+
+This re-writes both files from `https://bella-voyage.vercel.app/` (set
+in `scripts/generate-qr.mjs`) using high error-correction and the site
+palette so the asset reads as part of the brand.
 
 State recomputes every 60 minutes so a session left open over midnight
 rolls forward correctly.

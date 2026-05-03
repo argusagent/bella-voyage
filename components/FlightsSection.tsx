@@ -26,7 +26,7 @@ export function FlightsSection() {
     >
       <div className="mx-auto max-w-5xl">
         <SectionHeader
-          number="04"
+          number="03"
           eyebrow="Flights"
           title={
             <>

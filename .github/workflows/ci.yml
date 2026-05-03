@@ -1,0 +1,43 @@
+# Pre-deploy sanity check.
+#
+# Runs typecheck + production build on every push to any branch and
+# every PR.  If this is red, no deploy should happen — Vercel's Git
+# integration usually catches the same failures, but having a public,
+# repeatable run on every push makes regressions obvious.
+
+name: CI
+
+on:
+  push:
+    branches-ignore: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Typecheck & build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Production build
+        run: npm run build
+
+      - name: Verify QR static files
+        run: |
+          test -f public/bella-voyage-qr.svg || (echo "QR SVG missing — run npm run gen:qr"; exit 1)
+          test -f public/bella-voyage-qr.png || (echo "QR PNG missing — run npm run gen:qr"; exit 1)
+          echo "QR assets present."

@@ -3,6 +3,7 @@
 Seven nights, three cities — Paris, Beaune & Lausanne, June 3 – 11, 2026.
 
 Live: https://bella-voyage.vercel.app
+Deployment runbook: [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 | Route   | What it is                                                                         |
 | ------- | ---------------------------------------------------------------------------------- |

@@ -36,10 +36,11 @@ export function getCountdownState(now: Date = new Date()): CountdownState {
 }
 
 export function formatCountdownShort(s: CountdownState): string {
+  // Pre-trip: bare day-count.  The accompanying gold dot in the pill
+  // gives it visual context, and the aria-label carries the long form
+  // for screen readers.
   if (s.phase === "before") {
-    if (s.daysUntil === 0) return "today";
-    if (s.daysUntil === 1) return "tomorrow";
-    return `${s.daysUntil} days`;
+    return `${s.daysUntil}`;
   }
   if (s.phase === "live") {
     return `Day ${s.dayIndex} of ${s.totalDays}`;

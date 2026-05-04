@@ -55,7 +55,7 @@ export function Countdown({
         <span
           aria-hidden
           className={cn(
-            "inline-block min-w-[5.5rem] rounded-full border border-line bg-paper/80 px-3 py-1.5 text-center font-mono text-[11px] uppercase tracking-widest3 text-transparent",
+            "inline-block min-w-[3rem] rounded-full border border-line bg-paper/80 px-3 py-1.5 text-center font-mono text-[11px] uppercase tracking-widest3 text-transparent",
             className
           )}
         >
@@ -79,10 +79,7 @@ function Pill({
   state: CountdownState;
   className?: string;
 }) {
-  const label =
-    state.phase === "before"
-      ? `${formatCountdownShort(state)} away`
-      : formatCountdownShort(state);
+  const label = formatCountdownShort(state);
   return (
     <span
       role="status"

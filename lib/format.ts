@@ -41,6 +41,23 @@ export function formatRangeShort(startIso: string, endIso: string): string {
   return `${monthA} ${a.getDate()} – ${monthB} ${b.getDate()}`;
 }
 
+export function formatRangeLong(startIso: string, endIso: string): string {
+  // "June 3 – 11, 2026"
+  const a = parseDateOnly(startIso);
+  const b = parseDateOnly(endIso);
+  const sameMonth = a.getMonth() === b.getMonth();
+  const sameYear = a.getFullYear() === b.getFullYear();
+  const monthA = a.toLocaleDateString("en-US", { month: "long" });
+  if (sameMonth && sameYear) {
+    return `${monthA} ${a.getDate()} – ${b.getDate()}, ${a.getFullYear()}`;
+  }
+  const monthB = b.toLocaleDateString("en-US", { month: "long" });
+  if (sameYear) {
+    return `${monthA} ${a.getDate()} – ${monthB} ${b.getDate()}, ${a.getFullYear()}`;
+  }
+  return `${monthA} ${a.getDate()}, ${a.getFullYear()} – ${monthB} ${b.getDate()}, ${b.getFullYear()}`;
+}
+
 export function nightsBetween(startIso: string, endIso: string): number {
   const a = parseDateOnly(startIso).getTime();
   const b = parseDateOnly(endIso).getTime();

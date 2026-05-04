@@ -5,8 +5,11 @@ import { cn } from "@/lib/format";
 
 type Tab = { id: string; label: string };
 
-const SCROLLSPY_THRESHOLDS = [0, 0.25, 0.5, 0.75, 1];
-const SCROLLSPY_ROOT_MARGIN = "-30% 0% -55% 0%";
+// A section becomes "active" once its top has scrolled above this many
+// pixels from the viewport top — i.e., just under the sticky tab bar.
+// Slightly larger than the bar height so a few pixels of the new
+// section's content are in view before the indicator flips.
+const SCROLLSPY_HEADER_OFFSET = 80;
 
 // TabNav — sticky horizontal navigation that:
 //   • smoothly scrolls to the matching <section id={tab.id}> on click,
@@ -47,42 +50,48 @@ export function TabNav({
     return () => io.disconnect();
   }, []);
 
-  // Scroll-spy: which section is most prominently in view.
+  // Scroll-spy.  Active = the last section whose top has scrolled above
+  // the bottom of the sticky header.  This matches what a reader sees:
+  // whatever section currently fills the area below the bar is "current".
+  // IntersectionObserver-with-trigger-band misses this when scrolling
+  // back up, since a section's center may not re-enter the band before
+  // the next section pushes it out.
   useEffect(() => {
     const sections = tabs
       .map((t) => document.getElementById(t.id))
       .filter((el): el is HTMLElement => !!el);
     if (sections.length === 0) return;
 
-    // Track each section's intersection ratio; pick the largest.
-    const ratios = new Map<string, number>();
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          ratios.set(entry.target.id, entry.intersectionRatio);
+    const update = () => {
+      let bestId = sections[0].id;
+      for (const s of sections) {
+        const top = s.getBoundingClientRect().top;
+        if (top - SCROLLSPY_HEADER_OFFSET <= 0) {
+          bestId = s.id;
+        } else {
+          break;
         }
-        let bestId = active;
-        let bestRatio = 0;
-        for (const [id, r] of ratios) {
-          if (r > bestRatio) {
-            bestRatio = r;
-            bestId = id;
-          }
-        }
-        if (bestRatio > 0 && bestId !== active) {
-          setActive(bestId);
-        }
-      },
-      {
-        // Sliver in the upper-middle of the viewport is what counts as "current".
-        rootMargin: SCROLLSPY_ROOT_MARGIN,
-        threshold: SCROLLSPY_THRESHOLDS,
       }
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
-    // `active` deliberately excluded from deps — we only need to wire once.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      setActive((prev) => (prev === bestId ? prev : bestId));
+    };
+
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        update();
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [tabs]);
 
   // When `active` changes, autoscroll the bar so the active tab is in view.

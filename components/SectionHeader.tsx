@@ -39,7 +39,7 @@ export function SectionHeader({
         }`}
       >
         <span className="block h-px w-10 bg-gold sm:w-14" />
-        <span className="font-mono text-[10px] uppercase tracking-widest3 text-ink/60 sm:text-[11px]">
+        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/65 sm:text-xs">
           {number} · {eyebrow}
         </span>
       </div>

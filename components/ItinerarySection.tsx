@@ -99,7 +99,7 @@ function ItineraryInner() {
           <button
             type="button"
             onClick={() => (allOpen ? collapseAll() : expandAll())}
-            className="font-mono text-[10px] uppercase tracking-widest3 text-ink/60 underline-offset-4 transition-colors hover:text-ink hover:underline focus-visible:text-ink"
+            className="font-mono text-[11px] uppercase tracking-widest3 text-ink/60 underline-offset-4 transition-colors hover:text-ink hover:underline focus-visible:text-ink"
           >
             {allOpen ? "Collapse all" : "Expand all"}
           </button>
@@ -184,13 +184,13 @@ function DayRow({
       >
         {/* Date column */}
         <div className="flex shrink-0 flex-col items-center gap-1 pl-1 sm:w-28 sm:items-start sm:pl-2">
-          <span className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+          <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             {formatWeekday(day.date)}
           </span>
           <span className="font-serif text-3xl font-light leading-none text-ink sm:text-4xl">
             {formatDayNumber(day.date)}
           </span>
-          <span className="font-mono text-[9px] uppercase tracking-widest3 text-ink/45">
+          <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             Jun
           </span>
         </div>
@@ -198,14 +198,14 @@ function DayRow({
         {/* Content column */}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold">
+            <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
               {cityName}
             </p>
             <span aria-hidden className="block h-3 w-px bg-ink/15" />
-            <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/45 sm:hidden">
+            <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55 sm:hidden">
               {formatLongDate(day.date).split(",")[0]}
             </p>
-            <p className="hidden font-mono text-[10px] uppercase tracking-widest3 text-ink/45 sm:block">
+            <p className="hidden font-mono text-[11px] uppercase tracking-widest3 text-ink/55 sm:block">
               {formatLongDate(day.date)}
             </p>
           </div>
@@ -218,7 +218,7 @@ function DayRow({
           </p>
 
           {summary.length > 0 ? (
-            <p className="mt-3 hidden font-mono text-[10px] uppercase tracking-widest3 text-ink/50 sm:block">
+            <p className="mt-3 hidden font-mono text-[11px] uppercase tracking-widest3 text-ink/50 sm:block">
               {summary.join(" · ")}
             </p>
           ) : null}
@@ -229,12 +229,12 @@ function DayRow({
           <span
             aria-hidden
             className={cn(
-              "inline-flex h-9 w-9 items-center justify-center rounded-full border border-line transition-all duration-300",
+              "inline-flex h-11 w-11 items-center justify-center rounded-full border border-line transition-all duration-300",
               "group-hover:border-gold group-hover:text-gold",
               isOpen && "rotate-180 border-gold/60 bg-paper-bone text-gold"
             )}
           >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true">
               <path
                 d="M2 4L6 8L10 4"
                 stroke="currentColor"
@@ -324,7 +324,7 @@ function SubGroup({
     <div>
       <div className="mb-3 flex items-center gap-3">
         <span aria-hidden className="block h-px w-6 bg-gold" />
-        <span className="font-mono text-[10px] uppercase tracking-widest3 text-ink/60">
+        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/60">
           {label}
         </span>
       </div>
@@ -340,7 +340,7 @@ function RestaurantCard({ r }: { r: Restaurant }) {
     <article className="border border-line bg-paper-bone p-4 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold">
+          <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
             {cityMeta[r.city].name}
           </p>
           <h4 className="mt-1 font-serif text-xl font-light leading-tight text-ink">
@@ -348,7 +348,7 @@ function RestaurantCard({ r }: { r: Restaurant }) {
           </h4>
         </div>
         {r.partySize ? (
-          <span className="shrink-0 border border-line px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest2 text-ink/60">
+          <span className="shrink-0 border border-line px-2 py-0.5 font-mono text-[11px] uppercase tracking-widest2 text-ink/60">
             Party {r.partySize}
           </span>
         ) : null}
@@ -365,7 +365,7 @@ function RestaurantCard({ r }: { r: Restaurant }) {
       ) : null}
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-line/70 pt-3">
         {r.reservationCode ? (
-          <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             {r.reservationCode}
           </p>
         ) : null}
@@ -374,7 +374,7 @@ function RestaurantCard({ r }: { r: Restaurant }) {
             href={r.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="ml-auto inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[10px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
+            className="ml-auto inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
           >
             <span>Site</span>
             <span aria-hidden className="font-serif italic text-gold">
@@ -390,7 +390,7 @@ function RestaurantCard({ r }: { r: Restaurant }) {
 function ActivityCard({ a }: { a: Activity }) {
   return (
     <article className="border border-line bg-paper-bone p-4 sm:p-5">
-      <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold">
+      <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
         {cityMeta[a.city].name}
       </p>
       <h4 className="mt-1 font-serif text-lg font-light leading-snug text-ink">
@@ -403,12 +403,12 @@ function ActivityCard({ a }: { a: Activity }) {
       ) : null}
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-line/70 pt-3">
         {a.time ? (
-          <p className="font-mono text-[10px] uppercase tracking-widest2 text-ink/65">
+          <p className="font-mono text-[11px] uppercase tracking-widest2 text-ink/65">
             {a.time}
           </p>
         ) : null}
         {a.bookingCode ? (
-          <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             {a.bookingCode}
           </p>
         ) : null}
@@ -417,7 +417,7 @@ function ActivityCard({ a }: { a: Activity }) {
             href={a.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="ml-auto inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[10px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
+            className="ml-auto inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
           >
             <span>Site</span>
             <span aria-hidden className="font-serif italic text-gold">
@@ -439,7 +439,7 @@ function WineCard({ w }: { w: WineTour }) {
       >
         ❦
       </span>
-      <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold">
+      <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
         {cityMeta[w.city].name}
       </p>
       <h4 className="mt-1 font-serif text-xl font-light leading-tight text-ink">
@@ -453,7 +453,7 @@ function WineCard({ w }: { w: WineTour }) {
       <div className="mt-3 grid gap-1 border-t border-line/70 pt-3 text-sm sm:grid-cols-[max-content_1fr] sm:gap-x-4">
         {w.time ? (
           <>
-            <dt className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+            <dt className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
               When
             </dt>
             <dd className="font-sans text-ink/85">{w.time}</dd>
@@ -461,7 +461,7 @@ function WineCard({ w }: { w: WineTour }) {
         ) : null}
         {w.meetingPoint ? (
           <>
-            <dt className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+            <dt className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
               Meet
             </dt>
             <dd className="font-sans text-ink/85">{w.meetingPoint}</dd>
@@ -473,7 +473,7 @@ function WineCard({ w }: { w: WineTour }) {
           href={w.url}
           target="_blank"
           rel="noreferrer noopener"
-          className="mt-3 inline-flex w-fit items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[10px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
+          className="mt-3 inline-flex w-fit items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
         >
           <span>Estate</span>
           <span aria-hidden className="font-serif italic text-gold">

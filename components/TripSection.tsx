@@ -53,14 +53,14 @@ export function TripSection() {
                 className="group flex items-baseline justify-between gap-3 border-t border-line py-4 transition-colors hover:bg-paper sm:py-5"
               >
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+                  <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
                     {String(i + 1).padStart(2, "0")} · {m.country}
                   </p>
                   <p className="mt-1 font-serif text-2xl font-light leading-tight text-ink sm:text-3xl">
                     {m.name}
                   </p>
                 </div>
-                <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold/85">
+                <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold/85">
                   {m.nights} {m.nights === 1 ? "night" : "nights"}
                 </p>
               </a>
@@ -89,14 +89,14 @@ function Stat({
       transition={{ duration: 0.7 }}
       className="border border-line bg-paper p-5 sm:p-6"
     >
-      <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+      <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
         {label}
       </p>
       <p className="mt-2 font-serif text-4xl font-light leading-none text-ink sm:text-5xl">
         {value}
       </p>
       {note ? (
-        <p className="mt-1 font-mono text-[9px] uppercase tracking-widest3 text-gold/85">
+        <p className="mt-1 font-mono text-[11px] uppercase tracking-widest3 text-gold/85">
           {note}
         </p>
       ) : null}
@@ -156,7 +156,7 @@ function RouteRibbon() {
                     initial={{ opacity: 0, x: -8 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, delay: 0.3 + i * 0.18 }}
-                    className="-mt-3 mb-3 font-mono text-[10px] uppercase tracking-widest3 text-ink/55"
+                    className="-mt-3 mb-3 font-mono text-[11px] uppercase tracking-widest3 text-ink/55"
                   >
                     <span className="text-gold">·</span> {leg.mode} · {leg.duration} ·{" "}
                     {leg.detail}
@@ -200,7 +200,7 @@ function RouteRibbon() {
                 transition={{ duration: 0.6, delay: 0.7 + i * 0.18 }}
                 className="text-center"
               >
-                <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+                <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
                   {leg.mode} · {leg.duration}
                 </p>
                 <p className="mt-1 font-sans text-xs text-ink/70">{leg.detail}</p>
@@ -247,7 +247,7 @@ function Station({
               : "0 0 0 3px var(--paper-bone)",
         }}
       />
-      <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+      <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
         {station.code}
       </p>
       <p

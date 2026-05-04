@@ -78,14 +78,14 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
         </div>
         <div className="flex items-baseline gap-3">
           {flight.cabin ? (
-            <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold">
+            <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
               {flight.cabin}
             </p>
           ) : null}
           {flight.confirmation ? (
             <>
               <span aria-hidden className="block h-3 w-px bg-ink/15" />
-              <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+              <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
                 {flight.confirmation}
               </p>
             </>
@@ -97,7 +97,7 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
       <div className="grid gap-6 px-6 py-7 sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:px-8 sm:py-9">
         {/* Origin */}
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             Depart
           </p>
           <p className="mt-2 font-serif text-[clamp(40px,8vw,64px)] font-light leading-none text-ink">
@@ -119,7 +119,7 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
             aria-hidden
             className="block h-px w-full bg-[radial-gradient(circle_at_2px,var(--gold)_1.5px,transparent_2px)] [background-size:8px_1px] sm:h-full sm:w-px sm:bg-[radial-gradient(circle_at_50%_2px,var(--gold)_1.5px,transparent_2px)] sm:[background-size:1px_8px]"
           />
-          <span className="mx-3 inline-flex flex-col items-center font-mono text-[10px] uppercase tracking-widest3 text-ink/55 sm:my-3 sm:mx-0">
+          <span className="mx-3 inline-flex flex-col items-center font-mono text-[11px] uppercase tracking-widest3 text-ink/55 sm:my-3 sm:mx-0">
             <span className="text-base text-gold sm:text-xl" aria-hidden>
               ✈
             </span>
@@ -133,7 +133,7 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
 
         {/* Destination */}
         <div className="sm:text-right">
-          <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             Arrive
           </p>
           <p className="mt-2 font-serif text-[clamp(40px,8vw,64px)] font-light leading-none text-ink">

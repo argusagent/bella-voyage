@@ -41,7 +41,7 @@ export function Hero() {
           className="mb-10 flex items-center justify-center gap-3 sm:mb-14 sm:gap-4"
         >
           <span className="block h-px w-8 bg-gold/70 sm:w-14" />
-          <span className="font-mono text-[10px] uppercase tracking-widest3 text-ink/70 sm:text-[11px]">
+          <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
             {eyebrow}
           </span>
           <span className="block h-px w-8 bg-gold/70 sm:w-14" />
@@ -83,7 +83,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 1.55 }}
-          className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-widest3 text-ink/60 sm:mt-16 sm:gap-x-8 sm:text-[11px]"
+          className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 sm:mt-16 sm:gap-x-8 sm:text-xs"
         >
           <span>{range}, 2026</span>
           <span aria-hidden className="hidden h-3 w-px bg-ink/15 sm:inline-block" />
@@ -99,9 +99,9 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 2 }}
           aria-label="Begin the journey"
-          className="group mt-16 inline-flex flex-col items-center gap-2 text-ink/50 transition-colors hover:text-ink/80 focus-visible:text-ink sm:mt-24"
+          className="group mt-12 inline-flex flex-col items-center gap-2 text-ink/55 transition-colors hover:text-ink/85 focus-visible:text-ink sm:mt-20"
         >
-          <span className="font-mono text-[10px] uppercase tracking-widest3">
+          <span className="font-mono text-[11px] uppercase tracking-widest3 sm:text-xs">
             Begin
           </span>
           <span

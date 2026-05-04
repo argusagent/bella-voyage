@@ -67,7 +67,7 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
       <Media stay={stay} />
 
       <div className="flex flex-col justify-center">
-        <p className="font-mono text-[10px] uppercase tracking-widest3 text-gold">
+        <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
           {String(index + 1).padStart(2, "0")} · {cityName}
         </p>
         <h3 className="mt-3 font-serif text-[clamp(28px,5vw,42px)] font-light leading-tight tracking-tight text-ink">
@@ -125,7 +125,7 @@ function Row({
 }) {
   return (
     <>
-      <dt className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+      <dt className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
         {label}
       </dt>
       <dd
@@ -317,7 +317,7 @@ function Placeholder({ city, name }: { city: Stay["city"]; name: string }) {
         <p className="font-serif text-2xl italic font-light leading-tight text-ink/80 sm:text-3xl">
           {name}
         </p>
-        <p className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+        <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
           Photos to come
         </p>
       </div>

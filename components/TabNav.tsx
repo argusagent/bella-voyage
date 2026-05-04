@@ -139,9 +139,9 @@ export function TabNav({
             ? "border-line bg-paper/85 shadow-[0_1px_0_rgba(184,137,58,0.18)]"
             : "border-transparent bg-paper/60"
         )}
-        style={{ ["--tabnav-h" as string]: "56px" }}
+        style={{ ["--tabnav-h" as string]: "60px" }}
       >
-        <div className="mx-auto flex h-14 max-w-6xl items-stretch px-4 sm:px-8">
+        <div className="mx-auto flex h-[60px] max-w-6xl items-stretch px-4 sm:px-8">
           <div
             ref={barRef}
             role="tablist"
@@ -163,16 +163,17 @@ export function TabNav({
                 onClick={(e) => onTabClick(tab.id, e)}
                 tabIndex={isActive ? 0 : -1}
                 className={cn(
-                  "group relative flex shrink-0 snap-start items-center px-3 font-mono text-[10px] uppercase tracking-widest2 transition-colors sm:px-4 sm:text-[11px]",
-                  "min-h-[44px]",
-                  isActive ? "text-ink" : "text-ink/55 hover:text-ink/85"
+                  "group relative flex shrink-0 snap-start items-center px-4 font-mono uppercase tracking-widest2 transition-colors sm:px-5",
+                  "text-[11px] sm:text-xs",
+                  "min-h-[48px]",
+                  isActive ? "font-medium text-ink" : "text-ink/60 hover:text-ink/90"
                 )}
               >
                 <span>{tab.label}</span>
                 <span
                   aria-hidden
                   className={cn(
-                    "absolute inset-x-3 bottom-0 h-px origin-left transition-transform duration-300 ease-out sm:inset-x-4",
+                    "absolute inset-x-4 bottom-0 h-[2px] origin-left transition-transform duration-300 ease-out sm:inset-x-5",
                     isActive
                       ? "scale-x-100 bg-gold"
                       : "scale-x-0 bg-ink/30 group-hover:scale-x-100"
@@ -206,7 +207,7 @@ export function TabNav({
           -webkit-overflow-scrolling: touch;
         }
         section[id] {
-          scroll-margin-top: 64px;
+          scroll-margin-top: 68px;
         }
       `}</style>
     </>

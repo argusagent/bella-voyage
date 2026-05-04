@@ -86,9 +86,9 @@ export const trip = {
   nights: 7, // hotel nights (the overnight Atlantic flight is not counted)
   cities: ["paris", "beaune", "lausanne"] as City[],
   hero: {
-    eyebrow: "A seven-night journey",
+    eyebrow: "Bella's Graduation Trip",
     title: { lines: ["Paris,", "Beaune &", "Lausanne"], italicWord: "&" },
-    sub: "Three cities, in early June.",
+    sub: "",
   },
 } as const;
 

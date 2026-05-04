@@ -2,19 +2,19 @@
 
 import { motion } from "framer-motion";
 import { trip } from "@/lib/trip-data";
-import { formatRangeShort } from "@/lib/format";
+import { formatRangeLong } from "@/lib/format";
 
 // Hero — the moment the page opens.  A staggered reveal of the eyebrow,
-// then the three-line title, then the subtitle.  Honors prefers-reduced-
-// motion (transitions clamp to ~0ms via globals.css).
+// the three-line title, and a stacked metadata block (dates / nights /
+// cities).  No subtitle line — the metadata speaks for itself.
 //
-// Mobile: title clamps from 44px upward; the subtitle wraps; metadata row
-// stacks horizontally with reduced gap.  Desktop: title hits 96px+, single-line
-// metadata row sits below the subtitle.
+// Mobile: title clamps from 44px upward.  Desktop: title hits 96px+.
+// Metadata stacks vertically on every breakpoint so the rhythm is the
+// same in glance form on phone and laptop.
 
 export function Hero() {
-  const { eyebrow, title, sub } = trip.hero;
-  const range = formatRangeShort(trip.startDate, trip.endDate);
+  const { eyebrow, title } = trip.hero;
+  const range = formatRangeLong(trip.startDate, trip.endDate);
 
   return (
     <section
@@ -68,28 +68,16 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Subtitle */}
-        <motion.p
+        {/* Stacked metadata — dates / nights / cities on their own lines */}
+        <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: 1.2 }}
-          className="mx-auto mt-8 max-w-xl font-serif text-lg italic font-light text-ink/80 sm:mt-10 sm:text-xl"
+          className="mx-auto mt-10 flex flex-col items-center gap-y-3 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 sm:mt-14 sm:gap-y-3 sm:text-xs"
         >
-          {sub}
-        </motion.p>
-
-        {/* Metadata row — dates + city count + nights */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 1.55 }}
-          className="mx-auto mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 sm:mt-16 sm:gap-x-8 sm:text-xs"
-        >
-          <span>{range}, 2026</span>
-          <span aria-hidden className="hidden h-3 w-px bg-ink/15 sm:inline-block" />
-          <span>{trip.cities.length} cities</span>
-          <span aria-hidden className="hidden h-3 w-px bg-ink/15 sm:inline-block" />
-          <span>{trip.nights} nights</span>
+          <span>{range}</span>
+          <span>{trip.nights} Nights</span>
+          <span>{trip.cities.length} Cities</span>
         </motion.div>
 
         {/* Scroll cue */}

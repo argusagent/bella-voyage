@@ -290,13 +290,43 @@ export const timeline: TimelineEntry[] = [
   },
 ];
 
-// ─── Auto-appearing sections — populate when bookings exist ─────────────────
+// ─── Per-day activities ─────────────────────────────────────────────────────
 //
-// Currently empty by design — the Itinerary tab is intentionally a thin
-// list of days right now.  Add an entry here later and you can rewire the
-// rendering to surface them inline per day.
+// Surfaced inline under the matching Itinerary day row.  Order in this
+// array is the order they render in (already chronological per day).
+
+export const activities: Activity[] = [
+  {
+    id: "bouche-jun-8",
+    city: "beaune",
+    date: "2026-06-08",
+    time: "Morning",
+    title: "Breakfast at Bouché",
+    description: "Beloved local bakery — coffee and croissants.",
+  },
+  {
+    id: "hospices-jun-8",
+    city: "beaune",
+    date: "2026-06-08",
+    time: "Mid-morning",
+    title: "Hospices de Beaune",
+    description:
+      "The 15th-century Hôtel-Dieu, the iconic polychrome-tiled almshouse — audio-guided visit through the medieval wards, apothecary, and Last Judgement altarpiece.",
+  },
+  {
+    id: "marche-aux-vins-jun-8",
+    city: "beaune",
+    date: "2026-06-08",
+    time: "3:00 PM",
+    title: "Marché aux Vins — Exclusive Tasting",
+    description:
+      "Guided tasting of 7 Burgundy wines (4 reds, 3 whites, 1 Grand Cru) in the candlelit cellars of the 14th-century Cordeliers Church.",
+    bookingCode: "OS-9098755",
+  },
+];
+
+// ─── Reservations / wine tours — empty for now ──────────────────────────────
 
 export const restaurants: Restaurant[] = [];
-export const activities: Activity[] = [];
 export const wineTours: WineTour[] = [];
 

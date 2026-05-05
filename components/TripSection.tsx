@@ -1,14 +1,14 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { trip, cityMeta, flights, timeline } from "@/lib/trip-data";
 import { SectionHeader } from "./SectionHeader";
 
-// Trip — at-a-glance signal: a four-stat grid up top, then the
-// west-to-east-and-back route ribbon (vertical on mobile, horizontal
-// on desktop) with each leg labelled.  This is the landing tab — the
-// QR code drops Bella here.
+// Trip — at-a-glance signal: a four-stat grid up top, then a four-stop
+// route ribbon (vertical on mobile, horizontal on desktop).  The
+// Flights tab carries actual transit detail; this is just the shape.
+// QR code drops Bella here — the landing tab.
 
 export function TripSection() {
   return (
@@ -103,29 +103,18 @@ function Stat({
   );
 }
 
-// ─── Route ribbon (lifted from the retired RouteSection) ──────────────────
-
-type Leg = {
-  fromLabel: string;
-  toLabel: string;
-  mode: "Air" | "Rail" | "Road";
-  detail: string;
-  duration: string;
-};
-
-const LEGS: Leg[] = [
-  { fromLabel: "IND", toLabel: "CDG", mode: "Air", detail: "Delta · via DTW", duration: "Wed Jun 3" },
-  { fromLabel: "Paris", toLabel: "Beaune", mode: "Rail", detail: "TGV", duration: "~2h" },
-  { fromLabel: "Beaune", toLabel: "Lausanne", mode: "Rail", detail: "TGV Lyria", duration: "~3h" },
-  { fromLabel: "GVA", toLabel: "IND", mode: "Air", detail: "American · via LHR, ORD", duration: "Thu Jun 11" },
-];
+// ─── Route ribbon ──────────────────────────────────────────────────────────
+//
+// The shape of the trip — four stops in sequence.  Forward-only (no
+// return loop): the Flights tab carries the actual transit detail, so
+// here we just show where the trip goes, with a directional gold path
+// connecting the cities and a small chevron arrow at each transition.
 
 const STATIONS = [
   { code: "IND", name: "Indianapolis", kind: "airport" as const },
   { code: "PAR", name: "Paris", kind: "city" as const, accent: cityMeta.paris.accent },
   { code: "BNE", name: "Beaune", kind: "city" as const, accent: cityMeta.beaune.accent },
-  { code: "LAU", name: "Lausanne", kind: "city" as const, accent: cityMeta.lausanne.accent },
-  { code: "IND", name: "Indianapolis", kind: "airport" as const },
+  { code: "LAU", name: "Lake Geneva", kind: "city" as const, accent: cityMeta.lausanne.accent },
 ];
 
 function RouteRibbon() {
@@ -134,81 +123,106 @@ function RouteRibbon() {
 
   return (
     <div ref={ref} className="relative">
-      {/* Mobile vertical */}
+      {/* Mobile — vertical flow with downward chevrons between stops */}
       <div className="md:hidden">
-        <ol className="relative space-y-6 pl-10">
+        <ol className="relative space-y-8 pl-10">
           <span
             aria-hidden
-            className="absolute left-[15px] top-2 bottom-2 w-px origin-top bg-gradient-to-b from-gold via-gold/40 to-gold/0"
+            className="absolute left-[15px] top-3 bottom-10 w-px origin-top bg-gradient-to-b from-gold via-gold/50 to-gold/10"
             style={{
               transform: inView ? "scaleY(1)" : "scaleY(0)",
               transformOrigin: "top",
-              transition: "transform 1.6s cubic-bezier(0.2,0.8,0.2,1)",
+              transition: "transform 1.4s cubic-bezier(0.2,0.8,0.2,1)",
             }}
           />
-          {STATIONS.map((s, i) => {
-            const leg = LEGS[i - 1];
-            return (
-              <li key={i} className="relative">
-                {leg ? (
-                  <motion.div
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.3 + i * 0.18 }}
-                    className="-mt-3 mb-3 font-mono text-[11px] uppercase tracking-widest3 text-ink/55"
-                  >
-                    <span className="text-gold">·</span> {leg.mode} · {leg.duration} ·{" "}
-                    {leg.detail}
-                  </motion.div>
-                ) : null}
-                <Station station={s} delay={0.18 + i * 0.18} animate={inView} />
-              </li>
-            );
-          })}
+          {STATIONS.map((s, i) => (
+            <li key={i} className="relative">
+              <Station station={s} delay={0.18 + i * 0.18} animate={inView} />
+              {i < STATIONS.length - 1 ? (
+                <motion.span
+                  aria-hidden
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.45 + i * 0.18 }}
+                  className="mt-4 ml-[-26px] block w-3 text-gold"
+                >
+                  <ChevronDown />
+                </motion.span>
+              ) : null}
+            </li>
+          ))}
         </ol>
       </div>
 
-      {/* Desktop horizontal */}
+      {/* Desktop — horizontal flow with right-pointing chevrons between */}
       <div className="hidden md:block">
         <div className="relative">
-          <div className="absolute left-0 right-0 top-[26px] h-px overflow-hidden">
+          <div className="absolute left-[10%] right-[10%] top-[26px] h-px overflow-hidden">
             <span
               aria-hidden
-              className="block h-full origin-left bg-gradient-to-r from-gold/0 via-gold to-gold/0"
+              className="block h-full origin-left bg-gradient-to-r from-gold/0 via-gold to-gold/30"
               style={{
                 transform: inView ? "scaleX(1)" : "scaleX(0)",
-                transition: "transform 1.6s cubic-bezier(0.2,0.8,0.2,1)",
+                transition: "transform 1.4s cubic-bezier(0.2,0.8,0.2,1)",
               }}
             />
           </div>
 
-          <ol className="relative grid grid-cols-5">
+          <ol className="relative grid grid-cols-7 items-start">
             {STATIONS.map((s, i) => (
-              <li key={i} className="flex flex-col items-center">
-                <Station station={s} delay={0.3 + i * 0.18} animate={inView} />
-              </li>
+              <Fragment key={i}>
+                <li className="col-span-1 flex flex-col items-center">
+                  <Station station={s} delay={0.3 + i * 0.18} animate={inView} />
+                </li>
+                {i < STATIONS.length - 1 ? (
+                  <li
+                    aria-hidden
+                    className="col-span-1 flex items-start justify-center pt-[18px]"
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, x: -4 }}
+                      animate={inView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.5, delay: 0.55 + i * 0.18 }}
+                      className="block w-4 text-gold"
+                    >
+                      <ChevronRight />
+                    </motion.span>
+                  </li>
+                ) : null}
+              </Fragment>
             ))}
           </ol>
-
-          <div className="mt-8 grid grid-cols-4 gap-4">
-            {LEGS.map((leg, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 8 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.7 + i * 0.18 }}
-                className="text-center"
-              >
-                <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
-                  {leg.mode} · {leg.duration}
-                </p>
-                <p className="mt-1 font-sans text-xs text-ink/70">{leg.detail}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function ChevronDown() {
+  return (
+    <svg viewBox="0 0 12 14" fill="none" className="h-auto w-full">
+      <path
+        d="M6 1V13M2 9L6 13L10 9"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ChevronRight() {
+  return (
+    <svg viewBox="0 0 18 12" fill="none" className="h-auto w-full">
+      <path
+        d="M1 6H17M13 2L17 6L13 10"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 

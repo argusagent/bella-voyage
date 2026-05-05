@@ -67,7 +67,17 @@ function DayGroup({
     <div>
       <div className="mb-4 flex items-center gap-3 sm:mb-5">
         <span aria-hidden className="block h-px w-8 bg-gold sm:w-12" />
-        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/65 sm:text-xs">
+        <span
+          aria-hidden
+          className={cn(
+            "block h-5 w-5 text-gold sm:h-6 sm:w-6",
+            // Outbound plane points right; return points left.
+            index === 0 ? "rotate-0" : "-scale-x-100"
+          )}
+        >
+          <PlaneIcon />
+        </span>
+        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
           {index === 0 ? "Outbound" : "Return"} · {formatLongDate(group.date)}
         </span>
       </div>
@@ -77,6 +87,21 @@ function DayGroup({
         ))}
       </div>
     </div>
+  );
+}
+
+function PlaneIcon() {
+  // Plane silhouette inscribed in a 24×24 box, points right.  Filled
+  // path so it reads at small sizes.
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-full w-full"
+      aria-hidden
+    >
+      <path d="M21.5 12.5 13 14.6l-2.6 5.6c-.1.3-.4.5-.7.5h-.5c-.4 0-.7-.4-.6-.8l1.2-5.4-3.6.9-1.5 1.6c-.1.1-.3.2-.5.2h-.4c-.4 0-.6-.4-.5-.7l1-2.8L2 12.4c-.5-.1-.5-.7 0-.9L4.3 11l-1-2.8c-.1-.4.2-.7.6-.7h.4c.2 0 .3.1.4.2l1.5 1.6 3.6.9-1.2-5.4c-.1-.4.2-.8.6-.8h.5c.3 0 .6.2.7.5L13 9.4l8.5 2.1c.5.1.5.9 0 1Z" />
+    </svg>
   );
 }
 
@@ -124,10 +149,8 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
             aria-hidden
             className="block h-px w-full bg-[radial-gradient(circle_at_2px,var(--gold)_1.5px,transparent_2px)] [background-size:8px_1px] sm:h-full sm:w-px sm:bg-[radial-gradient(circle_at_50%_2px,var(--gold)_1.5px,transparent_2px)] sm:[background-size:1px_8px]"
           />
-          <span className="mx-3 inline-flex flex-col items-center font-mono text-[11px] uppercase tracking-widest3 text-ink/55 sm:my-3 sm:mx-0">
-            <span className="text-base text-gold sm:text-xl" aria-hidden>
-              ✈
-            </span>
+          <span className="mx-3 inline-flex h-7 w-7 items-center justify-center text-gold sm:my-3 sm:mx-0 sm:h-8 sm:w-8">
+            <PlaneIcon />
           </span>
           <span
             aria-hidden

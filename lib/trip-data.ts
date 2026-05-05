@@ -90,7 +90,7 @@ export const trip = {
   cities: ["paris", "beaune", "lausanne"] as City[],
   hero: {
     eyebrow: "Bella's Graduation Trip",
-    title: { lines: ["Paris,", "Beaune &", "Lausanne"], italicWord: "&" },
+    title: { lines: ["Paris,", "Beaune &", "Lake Geneva"], italicWord: "&" },
     sub: "",
   },
 } as const;
@@ -122,7 +122,7 @@ export const cityMeta: Record<
     accent: "var(--vintage)",
   },
   lausanne: {
-    name: "Lausanne",
+    name: "Lake Geneva",
     country: "Switzerland",
     nights: 2,
     blurb:
@@ -194,8 +194,7 @@ export const stays: Stay[] = [
     checkInTime: "2:00 PM",
     checkOutTime: "10:00 AM",
     address: "4 Rue Edouard Vaillant · Levallois-Perret · 92300",
-    // TODO: paste the Airbnb confirmation code (looks like e.g. HMXXXXXXXX)
-    confirmation: undefined,
+    confirmation: "HMB23FBN9N",
     blurb:
       "Studio Airbnb with a balcony in Levallois-Perret, just past the 17th — Métro line 3 to the centre.",
     // To enable the photo carousel, drop high-resolution JPGs into
@@ -283,7 +282,7 @@ export const timeline: TimelineEntry[] = [
   {
     date: "2026-06-09",
     city: "lausanne",
-    title: "On to Lausanne",
+    title: "On to Lake Geneva",
     description:
       "Morning train through the Jura, lake on the right hand. Afternoon arrival above Lake Geneva.",
   },

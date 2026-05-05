@@ -5,23 +5,34 @@ import { flights, type Flight } from "@/lib/trip-data";
 import {
   formatLongDate,
   formatTime24,
-  formatFlightDuration,
   cn,
 } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
-// Flights — boarding-pass-style flight cards.  Each card is fully
-// keyboard-focusable.  On mobile the card stacks vertically (origin block
-// on top, dotted divider, destination on bottom).  On desktop the two
-// blocks sit side-by-side with the duration centered between them.
+// Flights — slim segment cards.  Each card shows only the essentials:
+// origin/destination (code + name), flight number, depart/arrive times.
+// Multi-segment journeys get a date label so connections read clearly.
+//
+// Mobile: each segment stacks vertically (origin → divider → dest).
+// Desktop: side-by-side with the duration in the middle.
 
 export function FlightsSection() {
   if (flights.length === 0) return null;
 
+  // Group by departure date so consecutive segments on the same day
+  // share a header.  Source order is preserved.
+  const groups: { date: string; segments: Flight[] }[] = [];
+  for (const f of flights) {
+    const d = f.departISO.slice(0, 10);
+    const last = groups[groups.length - 1];
+    if (last && last.date === d) last.segments.push(f);
+    else groups.push({ date: d, segments: [f] });
+  }
+
   return (
     <section
       id="flights"
-      aria-label="The flights"
+      aria-label="Flights"
       className="bg-paper-bone px-6 py-20 sm:px-10 sm:py-28"
     >
       <div className="mx-auto max-w-5xl">
@@ -30,15 +41,14 @@ export function FlightsSection() {
           eyebrow="Flights"
           title={
             <>
-              Two long flights, <em className="italic text-gold">east and west.</em>
+              Out and <em className="italic text-gold">back.</em>
             </>
           }
-          subtitle="The bookend hours of the trip — held in business, both directions."
         />
 
-        <div className="grid gap-5 sm:gap-6">
-          {flights.map((f, i) => (
-            <FlightCard key={f.id} flight={f} index={i} />
+        <div className="space-y-10 sm:space-y-14">
+          {groups.map((group, gi) => (
+            <DayGroup key={group.date} group={group} index={gi} />
           ))}
         </div>
       </div>
@@ -46,56 +56,56 @@ export function FlightsSection() {
   );
 }
 
+function DayGroup({
+  group,
+  index,
+}: {
+  group: { date: string; segments: Flight[] };
+  index: number;
+}) {
+  return (
+    <div>
+      <div className="mb-4 flex items-center gap-3 sm:mb-5">
+        <span aria-hidden className="block h-px w-8 bg-gold sm:w-12" />
+        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/65 sm:text-xs">
+          {index === 0 ? "Outbound" : "Return"} · {formatLongDate(group.date)}
+        </span>
+      </div>
+      <div className="grid gap-4 sm:gap-5">
+        {group.segments.map((f, i) => (
+          <FlightCard key={f.id} flight={f} index={i} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function FlightCard({ flight, index }: { flight: Flight; index: number }) {
   const departTime = formatTime24(flight.departISO);
   const arriveTime = formatTime24(flight.arriveISO);
-  const departDate = formatLongDate(flight.departISO);
-  const arriveDate = formatLongDate(flight.arriveISO);
-  const duration = formatFlightDuration(flight.departISO, flight.arriveISO);
   const sameDay = flight.departISO.slice(0, 10) === flight.arriveISO.slice(0, 10);
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.8, delay: index * 0.12, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: 0.6, delay: index * 0.06, ease: [0.2, 0.8, 0.2, 1] }}
       className={cn(
         "group relative overflow-hidden border border-line bg-paper",
         "transition-shadow duration-500 hover:shadow-soft"
       )}
     >
-      {/* Top metadata strip */}
       <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-line/70 px-6 py-4 sm:px-8">
-        <div className="flex items-baseline gap-3">
-          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/60">
-            {flight.airline}
-          </p>
-          <span aria-hidden className="block h-3 w-px bg-ink/15" />
-          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink">
-            {flight.flightNumber}
-          </p>
-        </div>
-        <div className="flex items-baseline gap-3">
-          {flight.cabin ? (
-            <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
-              {flight.cabin}
-            </p>
-          ) : null}
-          {flight.confirmation ? (
-            <>
-              <span aria-hidden className="block h-3 w-px bg-ink/15" />
-              <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
-                {flight.confirmation}
-              </p>
-            </>
-          ) : null}
-        </div>
+        <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/65">
+          {flight.airline}
+        </p>
+        <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink">
+          {flight.flightNumber}
+        </p>
       </header>
 
-      {/* Body — origin / divider / destination */}
       <div className="grid gap-6 px-6 py-7 sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:px-8 sm:py-9">
-        {/* Origin */}
         <div>
           <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
             Depart
@@ -104,16 +114,11 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
             {flight.origin.code}
           </p>
           <p className="mt-2 font-sans text-sm text-ink/70">{flight.origin.name}</p>
-          <p className="mt-3 font-mono text-xs uppercase tracking-widest2 text-ink/65">
-            {departDate}
-          </p>
-          <p className="font-mono text-2xl tracking-wide text-ink sm:text-3xl">
+          <p className="mt-3 font-mono text-2xl tracking-wide text-ink sm:text-3xl">
             {departTime}
           </p>
         </div>
 
-        {/* Center divider with duration label.  On mobile, becomes a
-            horizontal dotted line above destination block.            */}
         <div className="flex items-center justify-center sm:flex-col">
           <span
             aria-hidden
@@ -123,7 +128,6 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
             <span className="text-base text-gold sm:text-xl" aria-hidden>
               ✈
             </span>
-            <span className="mt-1">{duration}</span>
           </span>
           <span
             aria-hidden
@@ -131,10 +135,9 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
           />
         </div>
 
-        {/* Destination */}
         <div className="sm:text-right">
           <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
-            Arrive
+            Arrive{!sameDay ? <span className="text-gold"> · +1 day</span> : null}
           </p>
           <p className="mt-2 font-serif text-[clamp(40px,8vw,64px)] font-light leading-none text-ink">
             {flight.destination.code}
@@ -142,21 +145,11 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
           <p className="mt-2 font-sans text-sm text-ink/70">
             {flight.destination.name}
           </p>
-          <p className="mt-3 font-mono text-xs uppercase tracking-widest2 text-ink/65">
-            {arriveDate}
-            {!sameDay ? <span className="text-gold"> · +1 day</span> : null}
-          </p>
-          <p className="font-mono text-2xl tracking-wide text-ink sm:text-3xl">
+          <p className="mt-3 font-mono text-2xl tracking-wide text-ink sm:text-3xl">
             {arriveTime}
           </p>
         </div>
       </div>
-
-      {flight.notes ? (
-        <footer className="border-t border-line/70 bg-paper-warm/40 px-6 py-3 sm:px-8">
-          <p className="font-sans text-xs italic text-ink/65">{flight.notes}</p>
-        </footer>
-      ) : null}
     </motion.article>
   );
 }

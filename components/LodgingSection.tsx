@@ -73,6 +73,12 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
           {stay.name}
         </h3>
 
+        {stay.host ? (
+          <p className="mt-1 font-serif text-base italic font-light text-ink/65 sm:text-lg">
+            Hosted by <span className="text-ink/85">{stay.host}</span>
+          </p>
+        ) : null}
+
         {stay.address ? (
           <p className="mt-3 font-sans text-sm text-ink/70">{stay.address}</p>
         ) : null}
@@ -85,8 +91,18 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
 
         {/* Detail strip */}
         <dl className="mt-7 grid gap-y-3 border-t border-line/70 pt-5 text-sm sm:grid-cols-[max-content_1fr] sm:gap-x-8">
-          <Row label="Check-in">{formatLongDate(stay.checkInISO)}</Row>
-          <Row label="Check-out">{formatLongDate(stay.checkOutISO)}</Row>
+          <Row label="Check-in">
+            {formatLongDate(stay.checkInISO)}
+            {stay.checkInTime ? (
+              <span className="text-ink/55"> · {stay.checkInTime}</span>
+            ) : null}
+          </Row>
+          <Row label="Check-out">
+            {formatLongDate(stay.checkOutISO)}
+            {stay.checkOutTime ? (
+              <span className="text-ink/55"> · {stay.checkOutTime}</span>
+            ) : null}
+          </Row>
           <Row label="Stay">
             {range} · {nights} {nights === 1 ? "night" : "nights"}
           </Row>
@@ -203,7 +219,7 @@ function EmblaCarousel({ stay }: { stay: Stay }) {
           {stay.images.map((img, i) => (
             <div
               key={i}
-              className="relative mr-3 aspect-[4/5] min-w-0 flex-[0_0_85%] overflow-hidden bg-paper-soft last:mr-0"
+              className="relative mr-3 aspect-[4/3] min-w-0 flex-[0_0_88%] overflow-hidden bg-paper-soft last:mr-0"
               role="group"
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${stay.images.length}`}
@@ -264,7 +280,7 @@ function DesktopGrid({ stay }: { stay: Stay }) {
           {rest.slice(0, 3).map((img, i) => (
             <div
               key={i}
-              className="relative aspect-square overflow-hidden bg-paper-soft"
+              className="relative aspect-[4/3] overflow-hidden bg-paper-soft"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -289,7 +305,7 @@ function Placeholder({ city, name }: { city: Stay["city"]; name: string }) {
   const accent = cityMeta[city].accent;
   return (
     <div
-      className="relative aspect-[4/5] w-full overflow-hidden border border-line/60 sm:aspect-[5/4] lg:aspect-[4/5]"
+      className="relative aspect-[4/3] w-full overflow-hidden border border-line/60"
       aria-hidden
     >
       <div

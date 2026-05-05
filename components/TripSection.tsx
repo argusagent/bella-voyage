@@ -23,7 +23,7 @@ export function TripSection() {
           eyebrow="Trip"
           title={
             <>
-              The shape of <em className="italic text-gold">the trip.</em>
+              Trip <em className="italic text-gold">Overview</em>
             </>
           }
         />

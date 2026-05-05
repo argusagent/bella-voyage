@@ -25,9 +25,12 @@ export type Flight = {
 export type Stay = {
   id: string;
   city: City;
-  name: string; // "Hôtel ..."
+  name: string; // "Hôtel ..." or Airbnb listing name
+  host?: string; // for Airbnbs / private rentals
   checkInISO: string; // "2026-06-04"
   checkOutISO: string; // "2026-06-07"
+  checkInTime?: string; // "2:00 PM" — display string, free-form
+  checkOutTime?: string; // "10:00 AM"
   address?: string;
   confirmation?: string;
   bookingUrl?: string;
@@ -184,15 +187,25 @@ export const stays: Stay[] = [
   {
     id: "stay-paris",
     city: "paris",
-    name: "Hôtel des Grands Boulevards",
+    name: "Home in Levallois-Perret",
+    host: "Joseph",
     checkInISO: "2026-06-04",
     checkOutISO: "2026-06-07",
-    address: "17 Boulevard Poissonnière · 75002 Paris",
-    confirmation: "HGB-2026-06-04-BV",
-    bookingUrl: "https://maisonsparticulieres.com/grands-boulevards",
+    checkInTime: "2:00 PM",
+    checkOutTime: "10:00 AM",
+    address: "4 Rue Edouard Vaillant · Levallois-Perret · 92300",
+    // TODO: paste the Airbnb confirmation code (looks like e.g. HMXXXXXXXX)
+    confirmation: undefined,
     blurb:
-      "A quiet, garden-courtyard hotel in the 2nd — a five-minute walk to the Palais Royal, twenty to the Seine. Marble lobby, a soft restaurant, and a bath worth lingering in.",
-    images: [],
+      "Studio Airbnb with a balcony in Levallois-Perret, just past the 17th — Métro line 3 to the centre.",
+    // To enable the photo carousel, drop high-resolution JPGs into
+    // public/images/paris/ at the filenames below and uncomment the
+    // entries.  Order here = render order in the carousel.
+    images: [
+      // { src: "/images/paris/airbnb-1.jpg", alt: "Bedroom and kitchenette", width: 1600, height: 1067 },
+      // { src: "/images/paris/airbnb-2.jpg", alt: "Living and dining area", width: 1600, height: 1067 },
+      // { src: "/images/paris/airbnb-3.jpg", alt: "Balcony", width: 1600, height: 1067 },
+    ],
   },
   {
     id: "stay-beaune",

@@ -150,7 +150,51 @@ function DayRow({
             ))}
           </ul>
         ) : null}
+
+        {day.images && day.images.length > 0 ? (
+          <DayPhotos images={day.images} title={day.title} />
+        ) : null}
       </div>
     </motion.li>
+  );
+}
+
+// Swipeable photo strip per day.  CSS-only horizontal snap-scroll
+// (no Embla here — the photo count is small, the UX is casual swipe).
+// Slides take ~72% of column width on mobile so the next photo peeks
+// in, ~45% on `sm+` so two fit at once.
+function DayPhotos({
+  images,
+  title,
+}: {
+  images: NonNullable<(typeof timeline)[number]["images"]>;
+  title: string;
+}) {
+  return (
+    <div
+      className="no-scrollbar mt-5 flex gap-3 overflow-x-auto pb-1 sm:mt-6 sm:gap-4"
+      aria-roledescription="carousel"
+      aria-label={`${title} photos`}
+    >
+      {images.map((img, i) => (
+        <figure
+          key={i}
+          className="relative aspect-[4/3] flex-[0_0_72%] shrink-0 snap-start overflow-hidden border border-line/60 bg-paper-soft sm:flex-[0_0_45%]"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${i + 1} of ${images.length}`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={img.src}
+            alt={img.alt}
+            width={img.width}
+            height={img.height}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+        </figure>
+      ))}
+    </div>
   );
 }

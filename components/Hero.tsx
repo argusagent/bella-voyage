@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { trip, flights, timeline } from "@/lib/trip-data";
+import { trip, timeline } from "@/lib/trip-data";
 import { Countdown } from "./Countdown";
 
 // Hero — the moment the page opens.  Staggered reveal of:
-//   eyebrow → three-line title → stat grid (Days/Nights/Cities/Flights) →
+//   eyebrow → three-line title → stat grid (Days/Nights/Cities/Fun) →
 //   prominent countdown → quiet "Begin" cue.
 //
 // The same stat grid used to live in the Trip section; pulling it up
@@ -33,18 +33,18 @@ export function Hero() {
       />
 
       <div className="mx-auto w-full max-w-5xl text-center">
-        {/* Eyebrow with gold rules */}
+        {/* Eyebrow with gold rules — single line at every breakpoint */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1], delay: 0.1 }}
           className="mb-8 flex items-center justify-center gap-3 sm:mb-12 sm:gap-4"
         >
-          <span className="block h-px w-8 bg-gold/70 sm:w-14" />
-          <span className="font-sans text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
+          <span className="block h-px w-6 bg-gold/70 sm:w-14" />
+          <span className="whitespace-nowrap font-sans text-[11px] uppercase tracking-widest text-ink/75 sm:text-xs sm:tracking-widest3">
             {eyebrow}
           </span>
-          <span className="block h-px w-8 bg-gold/70 sm:w-14" />
+          <span className="block h-px w-6 bg-gold/70 sm:w-14" />
         </motion.div>
 
         {/* Three-line title.  Each line reveals from below with overflow-hidden
@@ -68,7 +68,7 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Stat grid — Days / Nights / Cities / Flights */}
+        {/* Stat grid — Days / Nights / Cities / Fun */}
         <motion.dl
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,9 +76,9 @@ export function Hero() {
           className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-4 sm:gap-4"
         >
           <Stat label="Days" value={timeline.length} />
-          <Stat label="Nights" value={trip.nights} note="hotel" />
+          <Stat label="Nights" value={trip.nights} />
           <Stat label="Cities" value={trip.cities.length} />
-          <Stat label="Flights" value={flights.length} />
+          <Stat label="Fun" value="∞" />
         </motion.dl>
 
         {/* Countdown — the headline number, big and unmissable */}
@@ -113,28 +113,37 @@ export function Hero() {
   );
 }
 
+// Single stat tile.  Subtle 3D feel: gradient background + layered drop
+// shadow + a 1px top highlight rim.  Lifts on hover.  Numbers in
+// Cormorant medium so they read with weight against the soft paper.
 function Stat({
   label,
   value,
-  note,
 }: {
   label: string;
-  value: number;
-  note?: string;
+  value: number | string;
 }) {
   return (
-    <div className="border border-line bg-paper/70 px-3 py-4 backdrop-blur-sm sm:px-5 sm:py-6">
-      <dt className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
+    <div
+      className={[
+        "group relative overflow-hidden border border-line/70",
+        "bg-gradient-to-br from-paper via-paper to-paper-warm/40",
+        "px-4 py-6 sm:px-6 sm:py-8",
+        "shadow-[0_10px_30px_-15px_rgba(10,8,7,0.20),0_2px_4px_-2px_rgba(10,8,7,0.06)]",
+        "transition-all duration-300",
+        "hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_rgba(10,8,7,0.30),0_4px_8px_-2px_rgba(10,8,7,0.08)]",
+      ].join(" ")}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-paper-bone to-transparent"
+      />
+      <dt className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:text-xs">
         {label}
       </dt>
-      <dd className="mt-1 font-serif text-4xl font-light leading-none text-ink sm:mt-2 sm:text-5xl">
+      <dd className="mt-3 font-serif text-5xl font-medium leading-none text-ink sm:mt-4 sm:text-6xl">
         {value}
       </dd>
-      {note ? (
-        <p className="mt-1 font-sans text-[10px] uppercase tracking-widest3 text-gold/85 sm:text-[11px]">
-          {note}
-        </p>
-      ) : null}
     </div>
   );
 }

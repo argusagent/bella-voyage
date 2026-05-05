@@ -30,10 +30,10 @@ const config: Config = {
         rouge: "#8b3a2e",
       },
       fontFamily: {
-        // Driven by next/font → CSS variables on <html>.
+        // Two-family system: Cormorant Garamond for titles, Manrope for
+        // everything else.  Driven by next/font → CSS variables on <html>.
         serif: ["var(--font-cormorant)", "Cormorant Garamond", "serif"],
         sans: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "JetBrains Mono", "monospace"],
       },
       letterSpacing: {
         wider2: "0.18em",

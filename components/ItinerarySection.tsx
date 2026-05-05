@@ -81,27 +81,27 @@ function DayRow({
       className="flex items-start gap-4 border-b border-line py-5 sm:gap-8 sm:py-7"
     >
       <div className="flex shrink-0 flex-col items-center gap-1 pl-1 sm:w-28 sm:items-start sm:pl-2">
-        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+        <span className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
           {formatWeekday(day.date)}
         </span>
         <span className="font-serif text-3xl font-light leading-none text-ink sm:text-4xl">
           {formatDayNumber(day.date)}
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-widest3 text-ink/55">
+        <span className="font-sans text-[10px] uppercase tracking-widest3 text-ink/55">
           Jun
         </span>
       </div>
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
+          <p className="font-sans text-[11px] uppercase tracking-widest3 text-gold">
             {cityName}
           </p>
           <span aria-hidden className="block h-3 w-px bg-ink/15" />
-          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55 sm:hidden">
+          <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:hidden">
             {formatLongDate(day.date).split(",")[0]}
           </p>
-          <p className="hidden font-mono text-[11px] uppercase tracking-widest3 text-ink/55 sm:block">
+          <p className="hidden font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:block">
             {formatLongDate(day.date)}
           </p>
         </div>
@@ -118,7 +118,7 @@ function DayRow({
             {dayActivities.map((a) => (
               <li key={a.id}>
                 {a.time ? (
-                  <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
+                  <p className="font-sans text-[11px] uppercase tracking-widest3 text-gold">
                     {a.time}
                   </p>
                 ) : null}
@@ -131,7 +131,7 @@ function DayRow({
                   </p>
                 ) : null}
                 {a.bookingCode ? (
-                  <p className="mt-2 font-mono text-[11px] uppercase tracking-widest2 text-ink/55">
+                  <p className="mt-2 font-sans text-[11px] uppercase tracking-widest2 text-ink/55">
                     Confirmation · {a.bookingCode}
                   </p>
                 ) : null}
@@ -140,7 +140,7 @@ function DayRow({
                     href={a.url}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="mt-2 inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
+                    className="mt-2 inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-sans text-[11px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
                   >
                     <span>Site</span>
                     <span aria-hidden className="font-serif italic text-gold">→</span>

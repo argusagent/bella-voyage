@@ -30,7 +30,7 @@ export default async function QrPage() {
       <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
         <div className="flex items-center gap-3 print:hidden">
           <span className="block h-px w-10 bg-gold" />
-          <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/60">
+          <span className="font-sans text-[11px] uppercase tracking-widest3 text-ink/60">
             For Bella · scan to open
           </span>
           <span className="block h-px w-10 bg-gold" />
@@ -57,7 +57,7 @@ export default async function QrPage() {
             // (no user input).
             dangerouslySetInnerHTML={{ __html: svg }}
           />
-          <figcaption className="mt-5 font-mono text-[11px] uppercase tracking-widest3 text-ink/65 sm:text-xs print:text-[11px]">
+          <figcaption className="mt-5 font-sans text-[11px] uppercase tracking-widest3 text-ink/65 sm:text-xs print:text-[11px]">
             bella-voyage.vercel.app
           </figcaption>
         </figure>
@@ -66,7 +66,7 @@ export default async function QrPage() {
           <a
             href="/bella-voyage-qr.png"
             download="bella-voyage-qr.png"
-            className="group inline-flex items-center gap-2 rounded-full border border-ink/85 bg-ink px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest2 text-paper transition-all hover:border-gold focus-visible:border-gold sm:px-6 sm:py-3 sm:text-xs"
+            className="group inline-flex items-center gap-2 rounded-full border border-ink/85 bg-ink px-5 py-2.5 font-sans text-[11px] uppercase tracking-widest2 text-paper transition-all hover:border-gold focus-visible:border-gold sm:px-6 sm:py-3 sm:text-xs"
           >
             <span>Download PNG</span>
             <span aria-hidden className="font-serif italic text-gold-glow transition-transform group-hover:translate-y-px">
@@ -77,7 +77,7 @@ export default async function QrPage() {
           <a
             href="/bella-voyage-qr.svg"
             download="bella-voyage-qr.svg"
-            className="group inline-flex items-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest2 text-ink/80 transition-all hover:border-gold hover:text-ink sm:px-6 sm:py-3 sm:text-xs"
+            className="group inline-flex items-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 font-sans text-[11px] uppercase tracking-widest2 text-ink/80 transition-all hover:border-gold hover:text-ink sm:px-6 sm:py-3 sm:text-xs"
           >
             <span>Download SVG</span>
             <span aria-hidden className="font-serif italic text-gold transition-transform group-hover:translate-y-px">
@@ -93,7 +93,7 @@ export default async function QrPage() {
             Print this card, screenshot it, or text Bella the PNG. Scanning
             opens the live site at the <em className="italic text-gold">Trip</em> tab.
           </p>
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+          <p className="mt-3 font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
             High error-correction · scans even when partially covered
           </p>
         </div>

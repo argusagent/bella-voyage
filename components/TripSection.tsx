@@ -2,13 +2,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { Fragment, useRef } from "react";
-import { trip, cityMeta, flights, timeline } from "@/lib/trip-data";
+import { trip, cityMeta } from "@/lib/trip-data";
 import { SectionHeader } from "./SectionHeader";
 
-// Trip — at-a-glance signal: a four-stat grid up top, then a four-stop
-// route ribbon (vertical on mobile, horizontal on desktop).  The
-// Flights tab carries actual transit detail; this is just the shape.
-// QR code drops Bella here — the landing tab.
+// Trip — the shape of the journey.  Four-stop directional route ribbon
+// (vertical on mobile, horizontal on desktop) plus a quick city
+// summary that deep-links into Lodging.  The headline stats live up
+// in the Hero.
 
 export function TripSection() {
   return (
@@ -28,17 +28,7 @@ export function TripSection() {
           }
         />
 
-        {/* Stats grid */}
-        <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-5">
-          <Stat label="Days" value={timeline.length} />
-          <Stat label="Nights" value={trip.nights} note="hotel" />
-          <Stat label="Cities" value={trip.cities.length} />
-          <Stat label="Flights" value={flights.length} />
-        </dl>
-
-        <div className="mt-12 sm:mt-16">
-          <RouteRibbon />
-        </div>
+        <RouteRibbon />
 
         {/* City quick-summary — each row deep-links straight to that
             city's row in Lodging. */}
@@ -52,14 +42,14 @@ export function TripSection() {
                 className="group flex items-baseline justify-between gap-3 border-t border-line py-4 transition-colors hover:bg-paper sm:py-5"
               >
                 <div>
-                  <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+                  <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
                     {String(i + 1).padStart(2, "0")} · {m.country}
                   </p>
                   <p className="mt-1 font-serif text-2xl font-light leading-tight text-ink sm:text-3xl">
                     {m.name}
                   </p>
                 </div>
-                <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold/85">
+                <p className="font-sans text-[11px] uppercase tracking-widest3 text-gold/85">
                   {m.nights} {m.nights === 1 ? "night" : "nights"}
                 </p>
               </a>
@@ -68,38 +58,6 @@ export function TripSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Stat({
-  label,
-  value,
-  note,
-}: {
-  label: string;
-  value: number;
-  note?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.7 }}
-      className="border border-line bg-paper p-5 sm:p-6"
-    >
-      <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
-        {label}
-      </p>
-      <p className="mt-2 font-serif text-4xl font-light leading-none text-ink sm:text-5xl">
-        {value}
-      </p>
-      {note ? (
-        <p className="mt-1 font-mono text-[11px] uppercase tracking-widest3 text-gold/85">
-          {note}
-        </p>
-      ) : null}
-    </motion.div>
   );
 }
 
@@ -260,7 +218,7 @@ function Station({
               : "0 0 0 3px var(--paper-bone)",
         }}
       />
-      <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+      <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
         {station.code}
       </p>
       <p

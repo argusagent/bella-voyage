@@ -77,7 +77,7 @@ function DayGroup({
         >
           <PlaneIcon />
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
+        <span className="font-sans text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
           {index === 0 ? "Outbound" : "Return"} · {formatLongDate(group.date)}
         </span>
       </div>
@@ -122,24 +122,24 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
       )}
     >
       <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-line/70 px-6 py-4 sm:px-8">
-        <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/65">
+        <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/65">
           {flight.airline}
         </p>
-        <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink">
+        <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink">
           {flight.flightNumber}
         </p>
       </header>
 
       <div className="grid gap-6 px-6 py-7 sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:px-8 sm:py-9">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+          <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
             Depart
           </p>
           <p className="mt-2 font-serif text-[clamp(40px,8vw,64px)] font-light leading-none text-ink">
             {flight.origin.code}
           </p>
           <p className="mt-2 font-sans text-sm text-ink/70">{flight.origin.name}</p>
-          <p className="mt-3 font-mono text-2xl tracking-wide text-ink sm:text-3xl">
+          <p className="mt-3 font-sans text-2xl tracking-wide text-ink sm:text-3xl">
             {departTime}
           </p>
         </div>
@@ -159,7 +159,7 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
         </div>
 
         <div className="sm:text-right">
-          <p className="font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+          <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
             Arrive{!sameDay ? <span className="text-gold"> · +1 day</span> : null}
           </p>
           <p className="mt-2 font-serif text-[clamp(40px,8vw,64px)] font-light leading-none text-ink">
@@ -168,7 +168,7 @@ function FlightCard({ flight, index }: { flight: Flight; index: number }) {
           <p className="mt-2 font-sans text-sm text-ink/70">
             {flight.destination.name}
           </p>
-          <p className="mt-3 font-mono text-2xl tracking-wide text-ink sm:text-3xl">
+          <p className="mt-3 font-sans text-2xl tracking-wide text-ink sm:text-3xl">
             {arriveTime}
           </p>
         </div>

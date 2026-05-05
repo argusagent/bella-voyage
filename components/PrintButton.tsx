@@ -9,7 +9,7 @@ export function PrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="group inline-flex min-h-[44px] items-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest2 text-ink/85 transition-all hover:border-gold hover:text-ink focus-visible:border-gold sm:px-6 sm:py-3 sm:text-xs"
+      className="group inline-flex min-h-[44px] items-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 font-sans text-[11px] uppercase tracking-widest2 text-ink/85 transition-all hover:border-gold hover:text-ink focus-visible:border-gold sm:px-6 sm:py-3 sm:text-xs"
     >
       <span>Print</span>
       <svg

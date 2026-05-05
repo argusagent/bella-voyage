@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, JetBrains_Mono, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -15,13 +15,6 @@ const manrope = Manrope({
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   variable: "--font-manrope",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  display: "swap",
-  variable: "--font-jetbrains",
 });
 
 export const metadata: Metadata = {
@@ -61,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${manrope.variable} ${jetbrains.variable} h-full`}
+      className={`${cormorant.variable} ${manrope.variable} h-full`}
     >
       <body className="min-h-full">{children}</body>
     </html>

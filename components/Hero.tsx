@@ -1,26 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { trip } from "@/lib/trip-data";
-import { formatRangeLong } from "@/lib/format";
+import { trip, flights, timeline } from "@/lib/trip-data";
+import { Countdown } from "./Countdown";
 
-// Hero — the moment the page opens.  A staggered reveal of the eyebrow,
-// the three-line title, and a stacked metadata block (dates / nights /
-// cities).  No subtitle line — the metadata speaks for itself.
+// Hero — the moment the page opens.  Staggered reveal of:
+//   eyebrow → three-line title → stat grid (Days/Nights/Cities/Flights) →
+//   prominent countdown → quiet "Begin" cue.
 //
-// Mobile: title clamps from 44px upward.  Desktop: title hits 96px+.
-// Metadata stacks vertically on every breakpoint so the rhythm is the
-// same in glance form on phone and laptop.
+// The same stat grid used to live in the Trip section; pulling it up
+// here gives Bella the trip-shape signal at a glance, before any tab
+// or scroll.  When she scrolls past, the countdown morphs into the
+// small pill anchored to the sticky tab bar (handled in TabNav).
 
 export function Hero() {
   const { eyebrow, title } = trip.hero;
-  const range = formatRangeLong(trip.startDate, trip.endDate);
 
   return (
     <section
       id="top"
-      aria-label="Bella's voyage — overview"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pb-20 pt-24 sm:px-10 sm:pt-32"
+      aria-label="Bella's Graduation Trip — overview"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-20 sm:px-10 sm:pb-24 sm:pt-28"
     >
       {/* Soft paper-grain wash so the hero reads as a printed page */}
       <div
@@ -38,10 +38,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1], delay: 0.1 }}
-          className="mb-10 flex items-center justify-center gap-3 sm:mb-14 sm:gap-4"
+          className="mb-8 flex items-center justify-center gap-3 sm:mb-12 sm:gap-4"
         >
           <span className="block h-px w-8 bg-gold/70 sm:w-14" />
-          <span className="font-mono text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
+          <span className="font-sans text-[11px] uppercase tracking-widest3 text-ink/75 sm:text-xs">
             {eyebrow}
           </span>
           <span className="block h-px w-8 bg-gold/70 sm:w-14" />
@@ -49,7 +49,7 @@ export function Hero() {
 
         {/* Three-line title.  Each line reveals from below with overflow-hidden
             so the entrance feels like a stage curtain, not a fade.            */}
-        <h1 className="font-serif text-[clamp(44px,14vw,108px)] font-light leading-[0.95] tracking-tight text-ink">
+        <h1 className="font-serif text-[clamp(40px,12vw,96px)] font-light leading-[0.95] tracking-tight text-ink">
           {title.lines.map((line, idx) => (
             <span key={idx} className="block overflow-hidden pb-1 sm:pb-2">
               <motion.span
@@ -68,16 +68,27 @@ export function Hero() {
           ))}
         </h1>
 
-        {/* Stacked metadata — dates / nights / cities on their own lines */}
+        {/* Stat grid — Days / Nights / Cities / Flights */}
+        <motion.dl
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: 1.2 }}
+          className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-4 sm:gap-4"
+        >
+          <Stat label="Days" value={timeline.length} />
+          <Stat label="Nights" value={trip.nights} note="hotel" />
+          <Stat label="Cities" value={trip.cities.length} />
+          <Stat label="Flights" value={flights.length} />
+        </motion.dl>
+
+        {/* Countdown — the headline number, big and unmissable */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: 1.2 }}
-          className="mx-auto mt-10 flex flex-col items-center gap-y-3 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 sm:mt-14 sm:gap-y-3 sm:text-xs"
+          transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: 1.5 }}
+          className="mt-12 sm:mt-16"
         >
-          <span>{range}</span>
-          <span>{trip.nights} Nights</span>
-          <span>{trip.cities.length} Cities</span>
+          <Countdown variant="statement" />
         </motion.div>
 
         {/* Scroll cue */}
@@ -85,11 +96,11 @@ export function Hero() {
           href="#trip"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 2 }}
+          transition={{ duration: 1.2, delay: 1.9 }}
           aria-label="Begin the journey"
-          className="group mt-12 inline-flex flex-col items-center gap-2 text-ink/55 transition-colors hover:text-ink/85 focus-visible:text-ink sm:mt-20"
+          className="group mt-10 inline-flex flex-col items-center gap-2 text-ink/55 transition-colors hover:text-ink/85 focus-visible:text-ink sm:mt-14"
         >
-          <span className="font-mono text-[11px] uppercase tracking-widest3 sm:text-xs">
+          <span className="font-sans text-[11px] uppercase tracking-widest3 sm:text-xs">
             Begin
           </span>
           <span
@@ -99,6 +110,32 @@ export function Hero() {
         </motion.a>
       </div>
     </section>
+  );
+}
+
+function Stat({
+  label,
+  value,
+  note,
+}: {
+  label: string;
+  value: number;
+  note?: string;
+}) {
+  return (
+    <div className="border border-line bg-paper/70 px-3 py-4 backdrop-blur-sm sm:px-5 sm:py-6">
+      <dt className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
+        {label}
+      </dt>
+      <dd className="mt-1 font-serif text-4xl font-light leading-none text-ink sm:mt-2 sm:text-5xl">
+        {value}
+      </dd>
+      {note ? (
+        <p className="mt-1 font-sans text-[10px] uppercase tracking-widest3 text-gold/85 sm:text-[11px]">
+          {note}
+        </p>
+      ) : null}
+    </div>
   );
 }
 

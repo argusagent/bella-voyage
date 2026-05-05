@@ -42,8 +42,9 @@ export type TimelineEntry = {
   date: string; // "2026-06-04"
   city: City;
   title: string; // "Arrive in Paris"
-  description: string; // 1-2 sentences
+  description: string; // 1-line summary
   highlights?: string[]; // optional bullet detail when expanded
+  images?: { src: string; alt: string; width: number; height: number }[]; // swipeable photo strip
 };
 
 export type Restaurant = {
@@ -244,6 +245,10 @@ export const stays: Stay[] = [
 ];
 
 // ─── Day-by-day timeline ────────────────────────────────────────────────────
+//
+// Each entry: a tight one-line summary of the day, optional `images` array
+// for a swipeable photo strip below the activities.  Drop JPGs into
+// public/images/days/ then add image entries here to surface them.
 
 export const timeline: TimelineEntry[] = [
   {
@@ -252,62 +257,64 @@ export const timeline: TimelineEntry[] = [
     title: "Wheels up",
     description:
       "Indianapolis to Detroit, then the long quiet eastward — the trip begins above the Atlantic.",
+    images: [],
   },
   {
     date: "2026-06-04",
     city: "paris",
     title: "Arrive in Paris",
-    description:
-      "Morning landing. Slow walk into the 2nd, drop bags at the hotel, then a long lunch in the courtyard.",
+    description: "Morning landing, then the avenue, the Arc, and the Tower at dusk.",
+    images: [],
   },
   {
     date: "2026-06-05",
     city: "paris",
-    title: "Le Marais & the river",
-    description:
-      "An untimed day: morning markets in the Marais, afternoon along the Seine.",
+    title: "Versailles",
+    description: "South to the palace and gardens for the day, dinner back in the 17th.",
+    images: [],
   },
   {
     date: "2026-06-06",
     city: "paris",
-    title: "Saint-Germain & the gardens",
-    description:
-      "Left bank slow-walk. The Luxembourg Gardens, an old bookstore or two.",
+    title: "Paris in full",
+    description: "Louvre, the river, then the hill at dusk.",
+    images: [],
   },
   {
     date: "2026-06-07",
     city: "beaune",
-    title: "TGV south to Beaune",
-    description:
-      "Late morning train from Gare de Lyon, stepping off into the Côte d'Or by lunch.",
+    title: "South to Beaune",
+    description: "Late-morning train, then a long afternoon wandering the old town.",
+    images: [],
   },
   {
     date: "2026-06-08",
     city: "beaune",
     title: "Côte de Beaune",
     description:
-      "A day among the great vineyards south of town — Pommard, Volnay, Meursault — with lunch among the vines.",
+      "Bouché for breakfast, the Hospices mid-morning, then the candlelit cellars in the afternoon.",
+    images: [],
   },
   {
     date: "2026-06-09",
     city: "lausanne",
     title: "On to Lake Geneva",
-    description:
-      "Morning train through the Jura, lake on the right hand. Afternoon arrival above Lake Geneva.",
+    description: "Morning train through the Jura into the Alps, afternoon to explore.",
+    images: [],
   },
   {
     date: "2026-06-10",
     city: "lausanne",
-    title: "Lake day",
-    description:
-      "A full day on the water — a CGN steamer to the vineyards of Lavaux, a vertical walk through Saint-Saphorin.",
+    title: "Lavaux & the lake",
+    description: "Terraced vineyards above the water, dinner with a view.",
+    images: [],
   },
   {
     date: "2026-06-11",
     city: "lausanne",
     title: "Home",
-    description:
-      "An early lake breakfast, a short ride to Geneva, and the long way west — Geneva to London to Chicago to Indianapolis. Home by evening.",
+    description: "Morning train to Geneva, then the long way west.",
+    images: [],
   },
 ];
 
@@ -317,6 +324,103 @@ export const timeline: TimelineEntry[] = [
 // array is the order they render in (already chronological per day).
 
 export const activities: Activity[] = [
+  // ── Thursday, June 4 — Arrive in Paris ──────────────────────────────────
+  {
+    id: "jun-4-arrive",
+    city: "paris",
+    date: "2026-06-04",
+    time: "Morning",
+    title: "Arrive & train into the city",
+    description: "From CDG into Paris.",
+  },
+  {
+    id: "jun-4-arc",
+    city: "paris",
+    date: "2026-06-04",
+    time: "Afternoon",
+    title: "Champs-Élysées & Arc de Triomphe",
+    description: "The avenue, the Arc, the view from the top.",
+  },
+  {
+    id: "jun-4-eiffel",
+    city: "paris",
+    date: "2026-06-04",
+    time: "Evening",
+    title: "Eiffel Tower & dinner",
+    description: "Under the iron, then a long table.",
+  },
+
+  // ── Friday, June 5 — Versailles ─────────────────────────────────────────
+  {
+    id: "jun-5-cafe",
+    city: "paris",
+    date: "2026-06-05",
+    time: "Morning",
+    title: "Café & train to Versailles",
+    description: "Coffee out, then south to the palace.",
+  },
+  {
+    id: "jun-5-palace",
+    city: "paris",
+    date: "2026-06-05",
+    time: "Noon",
+    title: "Palace & gardens",
+    description: "Tour the rooms, then walk the parterres.",
+  },
+  {
+    id: "jun-5-dinner",
+    city: "paris",
+    date: "2026-06-05",
+    time: "Evening",
+    title: "Dinner in the 17ème",
+    description: "Back into Paris for the night.",
+  },
+
+  // ── Saturday, June 6 — Paris in full ────────────────────────────────────
+  {
+    id: "jun-6-louvre",
+    city: "paris",
+    date: "2026-06-06",
+    time: "Morning",
+    title: "Louvre",
+    description: "Open at 9 — start with the Denon wing.",
+  },
+  {
+    id: "jun-6-notre-dame",
+    city: "paris",
+    date: "2026-06-06",
+    time: "Afternoon",
+    title: "Notre Dame & the Seine",
+    description: "Walk the islands, cross the bridges.",
+  },
+  {
+    id: "jun-6-montmartre",
+    city: "paris",
+    date: "2026-06-06",
+    time: "Evening",
+    title: "Montmartre & Sacré-Cœur",
+    description: "Up the steps for the city at dusk.",
+  },
+
+  // ── Sunday, June 7 — South to Beaune ────────────────────────────────────
+  {
+    id: "jun-7-tgv",
+    city: "beaune",
+    date: "2026-06-07",
+    time: "Morning",
+    title: "Train to Beaune",
+    description: "TGV south from Gare de Lyon.",
+  },
+  {
+    id: "jun-7-wander",
+    city: "beaune",
+    date: "2026-06-07",
+    time: "Afternoon & evening",
+    title: "Wander the old town",
+    description: "Ramparts, the Hospices roof, a glass at the wall.",
+  },
+
+  // ── Monday, June 8 — Côte de Beaune ─────────────────────────────────────
   {
     id: "bouche-jun-8",
     city: "beaune",
@@ -343,6 +447,52 @@ export const activities: Activity[] = [
     description:
       "Guided tasting of 7 Burgundy wines (4 reds, 3 whites, 1 Grand Cru) in the candlelit cellars of the 14th-century Cordeliers Church.",
     bookingCode: "OS-9098755",
+  },
+
+  // ── Tuesday, June 9 — On to Lake Geneva ─────────────────────────────────
+  {
+    id: "jun-9-train",
+    city: "lausanne",
+    date: "2026-06-09",
+    time: "Morning",
+    title: "Train to Lake Geneva",
+    description: "Through the Jura into the Alps.",
+  },
+  {
+    id: "jun-9-explore",
+    city: "lausanne",
+    date: "2026-06-09",
+    time: "Afternoon",
+    title: "Explore the region",
+    description: "First lakeside walks above the water.",
+  },
+
+  // ── Wednesday, June 10 — Lavaux & the lake ──────────────────────────────
+  {
+    id: "jun-10-lavaux",
+    city: "lausanne",
+    date: "2026-06-10",
+    time: "Morning & afternoon",
+    title: "Lavaux Vineyard Terraces",
+    description: "Terraced vineyards stepping down to the lake.",
+  },
+  {
+    id: "jun-10-dinner",
+    city: "lausanne",
+    date: "2026-06-10",
+    time: "Evening",
+    title: "Dinner with a view",
+    description: "Watch the light cross the water.",
+  },
+
+  // ── Thursday, June 11 — Home ────────────────────────────────────────────
+  {
+    id: "jun-11-airport",
+    city: "lausanne",
+    date: "2026-06-11",
+    time: "Morning",
+    title: "Train to Geneva Airport",
+    description: "The last train, then the long way west.",
   },
 ];
 

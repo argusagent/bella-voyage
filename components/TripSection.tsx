@@ -26,7 +26,6 @@ export function TripSection() {
               The shape of <em className="italic text-gold">the trip.</em>
             </>
           }
-          subtitle="Two flights, two trains, three rooms — and nine days that don't try to fit anything in."
         />
 
         {/* Stats grid */}
@@ -115,18 +114,18 @@ type Leg = {
 };
 
 const LEGS: Leg[] = [
-  { fromLabel: "JFK", toLabel: "CDG", mode: "Air", detail: "Delta · DL 264", duration: "7h 25m" },
-  { fromLabel: "Paris", toLabel: "Beaune", mode: "Rail", detail: "TGV 6707", duration: "2h 09m" },
-  { fromLabel: "Beaune", toLabel: "Lausanne", mode: "Rail", detail: "TGV Lyria 9261", duration: "3h 04m" },
-  { fromLabel: "GVA", toLabel: "JFK", mode: "Air", detail: "Swiss · LX 22", duration: "9h 15m" },
+  { fromLabel: "IND", toLabel: "CDG", mode: "Air", detail: "Delta · via DTW", duration: "Wed Jun 3" },
+  { fromLabel: "Paris", toLabel: "Beaune", mode: "Rail", detail: "TGV", duration: "~2h" },
+  { fromLabel: "Beaune", toLabel: "Lausanne", mode: "Rail", detail: "TGV Lyria", duration: "~3h" },
+  { fromLabel: "GVA", toLabel: "IND", mode: "Air", detail: "American · via LHR, ORD", duration: "Thu Jun 11" },
 ];
 
 const STATIONS = [
-  { code: "JFK", name: "New York", kind: "airport" as const },
+  { code: "IND", name: "Indianapolis", kind: "airport" as const },
   { code: "PAR", name: "Paris", kind: "city" as const, accent: cityMeta.paris.accent },
   { code: "BNE", name: "Beaune", kind: "city" as const, accent: cityMeta.beaune.accent },
   { code: "LAU", name: "Lausanne", kind: "city" as const, accent: cityMeta.lausanne.accent },
-  { code: "JFK", name: "New York", kind: "airport" as const },
+  { code: "IND", name: "Indianapolis", kind: "airport" as const },
 ];
 
 function RouteRibbon() {

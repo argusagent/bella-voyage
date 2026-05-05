@@ -37,7 +37,6 @@ export function LodgingSection() {
               Three rooms, <em className="italic text-gold">held.</em>
             </>
           }
-          subtitle="Quiet hotels, chosen for the morning more than the lobby — a courtyard in Paris, behind the ramparts in Beaune, and the lake in Lausanne."
         />
 
         <div className="grid gap-10 sm:gap-14">

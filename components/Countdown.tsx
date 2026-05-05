@@ -55,7 +55,7 @@ export function Countdown({
         <span
           aria-hidden
           className={cn(
-            "inline-block min-w-[3rem] rounded-full border border-line bg-paper/80 px-3 py-1.5 text-center font-mono text-[11px] uppercase tracking-widest3 text-transparent",
+            "inline-block min-w-[3rem] rounded-full border border-line bg-paper/80 px-3 py-1.5 text-center font-sans text-[11px] uppercase tracking-widest3 text-transparent",
             className
           )}
         >
@@ -86,7 +86,7 @@ function Pill({
       aria-live="polite"
       aria-label={formatCountdownLong(state)}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-gold/40 bg-paper/90 px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest2 text-ink shadow-[0_4px_16px_-8px_rgba(10,8,7,0.25)] backdrop-blur-md",
+        "inline-flex items-center gap-2 rounded-full border border-gold/40 bg-paper/90 px-3 py-1.5 font-sans text-[11px] uppercase tracking-widest2 text-ink shadow-[0_4px_16px_-8px_rgba(10,8,7,0.25)] backdrop-blur-md",
         "sm:px-4 sm:py-2 sm:text-xs",
         className
       )}

@@ -21,7 +21,7 @@ export function Footer() {
           See you at gate <span className="text-gold">B22</span>.
         </p>
 
-        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-widest3 text-ink/55">
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
           <span>Bella&rsquo;s voyage</span>
           <span aria-hidden className="block h-3 w-px bg-ink/15" />
           <span>{range}, 2026</span>

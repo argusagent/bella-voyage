@@ -209,15 +209,24 @@ export const stays: Stay[] = [
   {
     id: "stay-beaune",
     city: "beaune",
-    name: "L'Hôtel de Beaune",
+    name: "Home in Beaune",
+    host: "Francoise",
     checkInISO: "2026-06-07",
     checkOutISO: "2026-06-09",
-    address: "5 Rue Samuel Legay · 21200 Beaune",
-    confirmation: "LHB-779402",
-    bookingUrl: "https://lhoteldebeaune.com",
+    checkInTime: "4:00 PM",
+    checkOutTime: "10:00 AM",
+    address: "2 Rue Vivant Gardin · Beaune · 21200",
+    confirmation: "HMCHCZWRBZ",
     blurb:
-      "A Relais & Châteaux property tucked behind the ramparts. The cellar restaurant pours the surrounding villages by the glass — a short, walkable spine from Hospices to vineyard.",
-    images: [],
+      "Loft Airbnb in the centre of Beaune, a few blocks from the Hospices and the cellars.",
+    // To enable the photo carousel, drop high-resolution JPGs into
+    // public/images/beaune/ at the filenames below and uncomment the
+    // entries.  Order here = render order in the carousel.
+    images: [
+      // { src: "/images/beaune/airbnb-1.jpg", alt: "Loft interior", width: 1600, height: 1067 },
+      // { src: "/images/beaune/airbnb-2.jpg", alt: "Living area", width: 1600, height: 1067 },
+      // { src: "/images/beaune/airbnb-3.jpg", alt: "Bedroom", width: 1600, height: 1067 },
+    ],
   },
   {
     id: "stay-lausanne",

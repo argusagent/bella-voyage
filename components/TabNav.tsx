@@ -172,7 +172,7 @@ export function TabNav({
                 onClick={(e) => onTabClick(tab.id, e)}
                 tabIndex={isActive ? 0 : -1}
                 className={cn(
-                  "group relative flex shrink-0 snap-start items-center px-4 font-mono uppercase tracking-widest2 transition-colors sm:px-5",
+                  "group relative flex shrink-0 snap-start items-center px-4 font-sans uppercase tracking-widest2 transition-colors sm:px-5",
                   "text-[11px] sm:text-xs",
                   "min-h-[48px]",
                   isActive ? "font-medium text-ink" : "text-ink/60 hover:text-ink/90"
@@ -193,8 +193,18 @@ export function TabNav({
           })}
           </div>
           {trailingSlot ? (
-            <div className="ml-2 flex shrink-0 items-center pl-2 sm:ml-3 sm:pl-3">
-              {/* Subtle gradient mask so scrolling tabs fade behind the slot */}
+            <div
+              aria-hidden={!stuck}
+              className={cn(
+                "ml-2 flex shrink-0 items-center pl-2 transition-all duration-500 ease-out sm:ml-3 sm:pl-3",
+                // The Hero carries the primary big countdown.  Once the
+                // bar sticks (Hero scrolled past), this slot fades in so
+                // the count is always visible from there on.
+                stuck
+                  ? "translate-x-0 opacity-100"
+                  : "pointer-events-none translate-x-2 opacity-0"
+              )}
+            >
               <span
                 aria-hidden
                 className="-ml-6 h-full w-6 bg-gradient-to-r from-transparent to-paper/85"

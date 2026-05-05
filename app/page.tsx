@@ -14,7 +14,7 @@ import { flights, stays, timeline } from "@/lib/trip-data";
 // its trailing edge.
 
 export const metadata = {
-  title: "Bella's Graduation Voyage — Paris, Beaune & Lausanne · June 2026",
+  title: "Bella's Graduation Voyage — Paris, Beaune & Lake Geneva · June 2026",
   description:
     "Seven nights, three cities — the trip, the rooms, the flights, and the day-by-day plan.",
 };

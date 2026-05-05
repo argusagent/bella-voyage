@@ -42,7 +42,7 @@ export default async function QrPage() {
         </h1>
 
         <p className="mt-3 font-serif text-base italic font-light text-ink/70 sm:text-lg print:text-base">
-          Seven nights · Paris, Beaune &amp; Lausanne · June 2026
+          Seven nights · Paris, Beaune &amp; Lake Geneva · June 2026
         </p>
 
         <figure

@@ -1,7 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { timeline, cityMeta } from "@/lib/trip-data";
+import {
+  timeline,
+  cityMeta,
+  activities,
+  type Activity,
+} from "@/lib/trip-data";
 import {
   formatLongDate,
   formatDayNumber,
@@ -9,10 +14,23 @@ import {
 } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
-// Itinerary — a flat list of nine days.  Each row is non-interactive:
-// date column, city eyebrow, title, one-line description.  No
-// expansion, no nested groups.  Restaurants / activities / wine tours
-// can be reintroduced later by editing this file alongside trip-data.
+// Itinerary — a flat list of nine days.  Each row shows the date, city,
+// title, one-line description, and (when present) a small chronological
+// list of that day's activities pulled from `activities[]` by date.
+// No expansion, no nested groups — the activity strip is always
+// visible, with a thin gold rule on the left to anchor it as a child
+// of the day above.
+
+// Pre-bucketed by date so each row renders in O(1) instead of scanning
+// the full activities array on every parent re-render.
+const ACTIVITIES_BY_DATE = new Map<string, Activity[]>();
+for (const a of activities) {
+  if (!a.date) continue;
+  const arr = ACTIVITIES_BY_DATE.get(a.date);
+  if (arr) arr.push(a);
+  else ACTIVITIES_BY_DATE.set(a.date, [a]);
+}
+const NO_ACTIVITIES: readonly Activity[] = [];
 
 export function ItinerarySection() {
   if (timeline.length === 0) return null;
@@ -52,6 +70,7 @@ function DayRow({
   index: number;
 }) {
   const cityName = cityMeta[day.city].name;
+  const dayActivities = ACTIVITIES_BY_DATE.get(day.date) ?? NO_ACTIVITIES;
 
   return (
     <motion.li
@@ -93,6 +112,44 @@ function DayRow({
         <p className="mt-2 font-sans text-[15px] leading-relaxed text-ink/70 sm:text-base">
           {day.description}
         </p>
+
+        {dayActivities.length > 0 ? (
+          <ul className="mt-5 space-y-5 border-l border-gold/40 pl-4 sm:mt-6 sm:space-y-6 sm:pl-5">
+            {dayActivities.map((a) => (
+              <li key={a.id}>
+                {a.time ? (
+                  <p className="font-mono text-[11px] uppercase tracking-widest3 text-gold">
+                    {a.time}
+                  </p>
+                ) : null}
+                <h4 className="mt-1 font-serif text-lg font-light leading-snug text-ink sm:text-xl">
+                  {a.title}
+                </h4>
+                {a.description ? (
+                  <p className="mt-1.5 font-sans text-sm leading-relaxed text-ink/70 sm:text-[15px]">
+                    {a.description}
+                  </p>
+                ) : null}
+                {a.bookingCode ? (
+                  <p className="mt-2 font-mono text-[11px] uppercase tracking-widest2 text-ink/55">
+                    Confirmation · {a.bookingCode}
+                  </p>
+                ) : null}
+                {a.url ? (
+                  <a
+                    href={a.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-2 inline-flex items-center gap-1 border-b border-gold/50 pb-0.5 font-mono text-[11px] uppercase tracking-widest3 text-ink/70 transition-colors hover:text-ink focus-visible:text-ink"
+                  >
+                    <span>Site</span>
+                    <span aria-hidden className="font-serif italic text-gold">→</span>
+                  </a>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </motion.li>
   );

@@ -20,7 +20,7 @@ export function Hero() {
     <section
       id="top"
       aria-label="Bella's Graduation Trip — overview"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-20 sm:px-10 sm:pb-24 sm:pt-28"
+      className="relative flex flex-col items-center overflow-hidden px-6 pb-12 pt-20 sm:px-10 sm:pb-16 sm:pt-28"
     >
       {/* Soft paper-grain wash so the hero reads as a printed page */}
       <div
@@ -78,7 +78,7 @@ export function Hero() {
           <Stat label="Days" value={timeline.length} />
           <Stat label="Nights" value={trip.nights} />
           <Stat label="Cities" value={trip.cities.length} />
-          <Stat label="Fun" value="∞" />
+          <Stat label="Memories" value="∞" />
         </motion.dl>
 
         {/* Countdown — the headline number, big and unmissable */}
@@ -90,24 +90,6 @@ export function Hero() {
         >
           <Countdown variant="statement" />
         </motion.div>
-
-        {/* Scroll cue */}
-        <motion.a
-          href="#trip"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.9 }}
-          aria-label="Begin the journey"
-          className="group mt-10 inline-flex flex-col items-center gap-2 text-ink/55 transition-colors hover:text-ink/85 focus-visible:text-ink sm:mt-14"
-        >
-          <span className="font-sans text-[11px] uppercase tracking-widest3 sm:text-xs">
-            Begin
-          </span>
-          <span
-            aria-hidden
-            className="block h-10 w-px bg-gradient-to-b from-gold/70 to-transparent transition-all group-hover:h-14"
-          />
-        </motion.a>
       </div>
     </section>
   );
@@ -126,17 +108,17 @@ function Stat({
   return (
     <div
       className={[
-        "group relative overflow-hidden border border-line/70",
-        "bg-gradient-to-br from-paper via-paper to-paper-warm/40",
+        "group relative overflow-hidden border border-line",
+        "bg-gradient-to-br from-paper-warm via-paper-warm to-paper-soft/70",
         "px-4 py-6 sm:px-6 sm:py-8",
-        "shadow-[0_10px_30px_-15px_rgba(10,8,7,0.20),0_2px_4px_-2px_rgba(10,8,7,0.06)]",
+        "shadow-[0_12px_32px_-14px_rgba(10,8,7,0.28),0_3px_6px_-2px_rgba(10,8,7,0.10)]",
         "transition-all duration-300",
-        "hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-20px_rgba(10,8,7,0.30),0_4px_8px_-2px_rgba(10,8,7,0.08)]",
+        "hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-20px_rgba(10,8,7,0.36),0_5px_10px_-2px_rgba(10,8,7,0.12)]",
       ].join(" ")}
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-paper-bone to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-paper-bone/80 to-transparent"
       />
       <dt className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:text-xs">
         {label}

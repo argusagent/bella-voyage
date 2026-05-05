@@ -196,13 +196,15 @@ export function TabNav({
             <div
               aria-hidden={!stuck}
               className={cn(
-                "ml-2 flex shrink-0 items-center pl-2 transition-all duration-500 ease-out sm:ml-3 sm:pl-3",
+                "flex shrink-0 items-center transition-all duration-500 ease-out",
                 // The Hero carries the primary big countdown.  Once the
-                // bar sticks (Hero scrolled past), this slot fades in so
-                // the count is always visible from there on.
+                // bar sticks (Hero scrolled past), this slot slides in
+                // and the tabs make room for it.  While not stuck the
+                // slot collapses to zero width so all four tabs get the
+                // full bar — no Flights / Itinerary cut-off.
                 stuck
-                  ? "translate-x-0 opacity-100"
-                  : "pointer-events-none translate-x-2 opacity-0"
+                  ? "ml-2 max-w-[7rem] pl-2 opacity-100 sm:ml-3 sm:pl-3"
+                  : "pointer-events-none ml-0 max-w-0 overflow-hidden pl-0 opacity-0"
               )}
             >
               <span

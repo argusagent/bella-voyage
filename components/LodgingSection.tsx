@@ -4,12 +4,7 @@ import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 import { stays, cityMeta, type Stay } from "@/lib/trip-data";
-import {
-  formatLongDate,
-  formatRangeShort,
-  nightsBetween,
-  cn,
-} from "@/lib/format";
+import { formatLongDate, cn } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
 // Lodging — one expanded card per hotel.  Each card has:
@@ -50,8 +45,6 @@ export function LodgingSection() {
 }
 
 function StayCard({ stay, index }: { stay: Stay; index: number }) {
-  const nights = nightsBetween(stay.checkInISO, stay.checkOutISO);
-  const range = formatRangeShort(stay.checkInISO, stay.checkOutISO);
   const cityName = cityMeta[stay.city].name;
 
   return (
@@ -91,21 +84,8 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
 
         {/* Detail strip */}
         <dl className="mt-7 grid gap-y-3 border-t border-line/70 pt-5 text-sm sm:grid-cols-[max-content_1fr] sm:gap-x-8">
-          <Row label="Check-in">
-            {formatLongDate(stay.checkInISO)}
-            {stay.checkInTime ? (
-              <span className="text-ink/55"> · {stay.checkInTime}</span>
-            ) : null}
-          </Row>
-          <Row label="Check-out">
-            {formatLongDate(stay.checkOutISO)}
-            {stay.checkOutTime ? (
-              <span className="text-ink/55"> · {stay.checkOutTime}</span>
-            ) : null}
-          </Row>
-          <Row label="Stay">
-            {range} · {nights} {nights === 1 ? "night" : "nights"}
-          </Row>
+          <Row label="Check-in">{formatLongDate(stay.checkInISO)}</Row>
+          <Row label="Check-out">{formatLongDate(stay.checkOutISO)}</Row>
           {stay.confirmation ? (
             <Row label="Confirmation" mono>
               {stay.confirmation}

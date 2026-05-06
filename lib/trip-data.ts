@@ -230,12 +230,10 @@ export const stays: Stay[] = [
   {
     id: "stay-lausanne",
     city: "lausanne",
-    name: "Beau-Rivage Palace",
+    name: "Hôtel Lavaux",
     checkInISO: "2026-06-09",
     checkOutISO: "2026-06-11",
-    address: "Place du Port 17–19 · 1006 Lausanne",
-    confirmation: "BRP-2026-7714",
-    bookingUrl: "https://brp.ch",
+    address: "Rte Cantonale 1 · 1096 Cully · Switzerland",
     blurb:
       "Lakefront for the final two nights. A balcony room facing the Alps across Geneva, a breakfast terrace at the water, and a long lawn that runs straight to the dock.",
     images: [

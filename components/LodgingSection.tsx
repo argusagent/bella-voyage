@@ -29,7 +29,8 @@ export function LodgingSection() {
           eyebrow="Lodging"
           title={
             <>
-              Three rooms, <em className="italic text-gold">held.</em>
+              A peek at where you&rsquo;ll{" "}
+              <em className="italic text-gold">stay.</em>
             </>
           }
         />

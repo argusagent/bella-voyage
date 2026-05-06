@@ -41,7 +41,8 @@ export function FlightsSection() {
           eyebrow="Flights"
           title={
             <>
-              Out and <em className="italic text-gold">back.</em>
+              A summary of your flight{" "}
+              <em className="italic text-gold">details.</em>
             </>
           }
         />

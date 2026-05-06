@@ -1,11 +1,6 @@
 "use client";
 
-import { trip } from "@/lib/trip-data";
-import { formatRangeShort } from "@/lib/format";
-
 export function Footer() {
-  const range = formatRangeShort(trip.startDate, trip.endDate);
-
   return (
     <footer className="border-t border-line bg-paper px-6 py-10 sm:px-10 sm:py-14">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center">
@@ -25,13 +20,9 @@ export function Footer() {
           <span className="text-gold">&mdash; Eli</span>
         </p>
 
-        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
-          <span>Bella&rsquo;s Graduation Trip</span>
-          <span aria-hidden className="block h-3 w-px bg-ink/15" />
-          <span>{range}, 2026</span>
-          <span aria-hidden className="block h-3 w-px bg-ink/15" />
-          <span>{trip.nights} nights</span>
-        </div>
+        <p className="mt-2 font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
+          Bella&rsquo;s Graduation Trip
+        </p>
       </div>
     </footer>
   );

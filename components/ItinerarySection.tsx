@@ -15,11 +15,10 @@ import {
 import { SectionHeader } from "./SectionHeader";
 
 // Itinerary — a flat list of nine days.  Each row shows the date, city,
-// title, one-line description, and (when present) a small chronological
-// list of that day's activities pulled from `activities[]` by date.
-// No expansion, no nested groups — the activity strip is always
-// visible, with a thin gold rule on the left to anchor it as a child
-// of the day above.
+// title, and (when present) a small chronological list of that day's
+// activities pulled from `activities[]` by date.  No expansion, no
+// nested groups — the activity strip is always visible, with a thin
+// gold rule on the left to anchor it as a child of the day above.
 
 // Pre-bucketed by date so each row renders in O(1) instead of scanning
 // the full activities array on every parent re-render.
@@ -109,9 +108,6 @@ function DayRow({
         <h3 className="mt-2 font-serif text-2xl font-light leading-tight text-ink sm:text-3xl">
           {day.title}
         </h3>
-        <p className="mt-2 font-sans text-[15px] leading-relaxed text-ink/70 sm:text-base">
-          {day.description}
-        </p>
 
         {dayActivities.length > 0 ? (
           <ul className="mt-5 space-y-5 border-l border-gold/40 pl-4 sm:mt-6 sm:space-y-6 sm:pl-5">
@@ -125,11 +121,6 @@ function DayRow({
                 <h4 className="mt-1 font-serif text-lg font-light leading-snug text-ink sm:text-xl">
                   {a.title}
                 </h4>
-                {a.description ? (
-                  <p className="mt-1.5 font-sans text-sm leading-relaxed text-ink/70 sm:text-[15px]">
-                    {a.description}
-                  </p>
-                ) : null}
                 {a.bookingCode ? (
                   <p className="mt-2 font-sans text-[11px] uppercase tracking-widest2 text-ink/55">
                     Confirmation · {a.bookingCode}

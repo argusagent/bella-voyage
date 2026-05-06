@@ -198,13 +198,11 @@ export const stays: Stay[] = [
     confirmation: "HMB23FBN9N",
     blurb:
       "Studio Airbnb with a balcony in Levallois-Perret, just past the 17th — Métro line 3 to the centre.",
-    // To enable the photo carousel, drop high-resolution JPGs into
-    // public/images/paris/ at the filenames below and uncomment the
-    // entries.  Order here = render order in the carousel.
     images: [
-      // { src: "/images/paris/airbnb-1.jpg", alt: "Bedroom and kitchenette", width: 1600, height: 1067 },
-      // { src: "/images/paris/airbnb-2.jpg", alt: "Living and dining area", width: 1600, height: 1067 },
-      // { src: "/images/paris/airbnb-3.jpg", alt: "Balcony", width: 1600, height: 1067 },
+      { src: "/images/paris/airbnb-1.jpg", alt: "Studio with bed, kitchenette, and balcony doors", width: 1067, height: 800 },
+      { src: "/images/paris/airbnb-2.jpg", alt: "Dining nook by the balcony window", width: 640, height: 480 },
+      { src: "/images/paris/airbnb-3.jpg", alt: "Balcony looking out over Levallois-Perret", width: 1280, height: 960 },
+      { src: "/images/paris/airbnb-4.jpg", alt: "Marble bathroom with walk-in shower", width: 1280, height: 960 },
     ],
   },
   {
@@ -240,7 +238,12 @@ export const stays: Stay[] = [
     bookingUrl: "https://brp.ch",
     blurb:
       "Lakefront for the final two nights. A balcony room facing the Alps across Geneva, a breakfast terrace at the water, and a long lawn that runs straight to the dock.",
-    images: [],
+    images: [
+      { src: "/images/lausanne/hotel-1.jpg", alt: "Room with lake and Alps through floor-to-ceiling windows", width: 789, height: 592 },
+      { src: "/images/lausanne/hotel-2.jpg", alt: "Private terrace overlooking Lake Geneva", width: 847, height: 635 },
+      { src: "/images/lausanne/hotel-3.jpg", alt: "Bedroom interior in soft neutral tones", width: 789, height: 592 },
+      { src: "/images/lausanne/hotel-4.jpg", alt: "Terrace seating facing the Alps across the lake", width: 781, height: 586 },
+    ],
   },
 ];
 
@@ -257,7 +260,14 @@ export const timeline: TimelineEntry[] = [
     title: "Wheels up",
     description:
       "Indianapolis to Detroit, then the long quiet eastward — the trip begins above the Atlantic.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-03-travel.jpg",
+        alt: "Plane wing over Paris with the Eiffel Tower on the horizon",
+        width: 768,
+        height: 576,
+      },
+    ],
   },
   {
     date: "2026-06-04",

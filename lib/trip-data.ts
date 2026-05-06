@@ -264,28 +264,56 @@ export const timeline: TimelineEntry[] = [
     city: "paris",
     title: "Arrive in Paris",
     description: "Morning landing, then the avenue, the Arc, and the Tower at dusk.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-04-eiffel.jpg",
+        alt: "Eiffel Tower at dusk",
+        width: 1439,
+        height: 1079,
+      },
+    ],
   },
   {
     date: "2026-06-05",
     city: "paris",
     title: "Versailles",
     description: "South to the palace and gardens for the day, dinner back in the 17th.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-05-versailles.jpg",
+        alt: "Palace of Versailles above the parterre gardens",
+        width: 1600,
+        height: 1200,
+      },
+    ],
   },
   {
     date: "2026-06-06",
     city: "paris",
     title: "Paris in full",
     description: "Louvre, the river, then the hill at dusk.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-06-montmartre.jpg",
+        alt: "Sacré-Cœur on Montmartre at dusk",
+        width: 1600,
+        height: 1200,
+      },
+    ],
   },
   {
     date: "2026-06-07",
     city: "beaune",
     title: "South to Beaune",
     description: "Late-morning train, then a long afternoon wandering the old town.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-07-beaune.jpg",
+        alt: "Vineyards above Beaune at golden hour",
+        width: 1440,
+        height: 1080,
+      },
+    ],
   },
   {
     date: "2026-06-08",
@@ -293,28 +321,56 @@ export const timeline: TimelineEntry[] = [
     title: "Côte de Beaune",
     description:
       "Bouché for breakfast, the Hospices mid-morning, then the candlelit cellars in the afternoon.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-08-wine-tasting.jpg",
+        alt: "Burgundy wine cellar tasting room",
+        width: 911,
+        height: 683,
+      },
+    ],
   },
   {
     date: "2026-06-09",
     city: "lausanne",
     title: "On to Lake Geneva",
     description: "Morning train through the Jura into the Alps, afternoon to explore.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-09-geneva.jpg",
+        alt: "Lake Geneva from a hillside village",
+        width: 1133,
+        height: 850,
+      },
+    ],
   },
   {
     date: "2026-06-10",
     city: "lausanne",
     title: "Lavaux & the lake",
     description: "Terraced vineyards above the water, dinner with a view.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-10-lavaux.jpg",
+        alt: "Lavaux vineyard terraces stepping down to Lake Geneva",
+        width: 479,
+        height: 359,
+      },
+    ],
   },
   {
     date: "2026-06-11",
     city: "lausanne",
     title: "Home",
     description: "Morning train to Geneva, then the long way west.",
-    images: [],
+    images: [
+      {
+        src: "/images/days/jun-11-train.jpg",
+        alt: "Swiss regional train winding through Lavaux vineyards",
+        width: 1600,
+        height: 1200,
+      },
+    ],
   },
 ];
 

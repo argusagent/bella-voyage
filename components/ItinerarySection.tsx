@@ -147,10 +147,10 @@ function DayRow({
   );
 }
 
-// Swipeable photo strip per day.  CSS-only horizontal snap-scroll
-// (no Embla here — the photo count is small, the UX is casual swipe).
-// Slides take ~72% of column width on mobile so the next photo peeks
-// in, ~45% on `sm+` so two fit at once.
+// Per-day photo strip.  CSS-only horizontal snap-scroll — when there
+// are multiple photos for a day, swipe to advance.  Each slide takes
+// the full column width so the image matches the text block above it
+// rather than peeking the next photo at a smaller size.
 function DayPhotos({
   images,
   title,
@@ -160,14 +160,14 @@ function DayPhotos({
 }) {
   return (
     <div
-      className="no-scrollbar mt-5 flex gap-3 overflow-x-auto pb-1 sm:mt-6 sm:gap-4"
+      className="no-scrollbar mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 sm:mt-6 sm:gap-4"
       aria-roledescription="carousel"
       aria-label={`${title} photos`}
     >
       {images.map((img, i) => (
         <figure
           key={i}
-          className="relative aspect-[4/3] flex-[0_0_72%] shrink-0 snap-start overflow-hidden border border-line/60 bg-paper-soft sm:flex-[0_0_45%]"
+          className="relative aspect-[4/3] flex-[0_0_100%] shrink-0 snap-start overflow-hidden border border-line/60 bg-paper-soft"
           role="group"
           aria-roledescription="slide"
           aria-label={`${i + 1} of ${images.length}`}

@@ -427,7 +427,7 @@ export const activities: Activity[] = [
     city: "paris",
     date: "2026-06-06",
     time: "Morning",
-    title: "Louvre — start with the Denon wing",
+    title: "Louvre",
   },
   {
     id: "jun-6-notre-dame",

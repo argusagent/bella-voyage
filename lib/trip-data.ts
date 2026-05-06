@@ -233,7 +233,7 @@ export const stays: Stay[] = [
     checkOutISO: "2026-06-11",
     address: "Rte Cantonale 1 · 1096 Cully · Switzerland",
     blurb:
-      "Lakefront for the final two nights. A balcony room facing the Alps across Geneva, a breakfast terrace at the water, and a long lawn that runs straight to the dock.",
+      "Lakefront for the final two nights. A balcony room facing the Alps across Geneva.",
     images: [
       { src: "/images/lausanne/hotel-1.jpg", alt: "Room with lake and Alps through floor-to-ceiling windows", width: 789, height: 592 },
       { src: "/images/lausanne/hotel-2.jpg", alt: "Private terrace overlooking Lake Geneva", width: 847, height: 635 },

@@ -21,7 +21,7 @@ export function LodgingSection() {
     <section
       id="lodging"
       aria-label="Lodging"
-      className="bg-paper-warm px-6 py-20 sm:px-10 sm:py-28"
+      className="bg-paper-warm px-6 py-12 sm:px-10 sm:py-20"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeader

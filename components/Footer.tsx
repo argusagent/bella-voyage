@@ -7,8 +7,8 @@ export function Footer() {
   const range = formatRangeShort(trip.startDate, trip.endDate);
 
   return (
-    <footer className="border-t border-line bg-paper px-6 py-14 sm:px-10 sm:py-20">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center">
+    <footer className="border-t border-line bg-paper px-6 py-10 sm:px-10 sm:py-14">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center">
         <span aria-hidden className="block h-px w-12 bg-gold" />
 
         <p className="font-serif text-2xl italic font-light text-ink/85 sm:text-3xl">

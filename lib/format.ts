@@ -12,6 +12,12 @@ export function formatLongDate(iso: string): string {
   });
 }
 
+export function formatMonthDay(iso: string): string {
+  // "2026-06-04" → "June 4"
+  const d = parseDateOnly(iso);
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+}
+
 export function formatShortDate(iso: string): string {
   // "2026-06-04" → "Jun 4"
   const d = parseDateOnly(iso);

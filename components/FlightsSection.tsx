@@ -33,7 +33,7 @@ export function FlightsSection() {
     <section
       id="flights"
       aria-label="Flights"
-      className="bg-paper-bone px-6 py-20 sm:px-10 sm:py-28"
+      className="bg-paper-bone px-6 py-12 sm:px-10 sm:py-20"
     >
       <div className="mx-auto max-w-5xl">
         <SectionHeader

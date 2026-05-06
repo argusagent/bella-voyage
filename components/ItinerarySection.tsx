@@ -38,7 +38,7 @@ export function ItinerarySection() {
     <section
       id="itinerary"
       aria-label="Itinerary"
-      className="bg-paper px-6 py-20 sm:px-10 sm:py-28"
+      className="bg-paper px-6 py-12 sm:px-10 sm:py-20"
     >
       <div className="mx-auto max-w-5xl">
         <SectionHeader

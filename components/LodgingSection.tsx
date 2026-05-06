@@ -80,16 +80,14 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
         ) : null}
 
         {/* Detail strip */}
-        <dl className="mt-7 grid gap-y-3 border-t border-line/70 pt-5 text-sm sm:grid-cols-[max-content_1fr] sm:gap-x-8">
+        <dl className="mt-7 space-y-5 border-t border-line/70 pt-5 text-sm sm:grid sm:grid-cols-[max-content_1fr] sm:gap-x-8 sm:gap-y-4 sm:space-y-0">
           <Row label="Check-in">{formatLongDate(stay.checkInISO)}</Row>
           <Row label="Check-out">{formatLongDate(stay.checkOutISO)}</Row>
           {stay.address ? (
             <Row label="Address">{stay.address}</Row>
           ) : null}
           {stay.confirmation ? (
-            <Row label="Confirmation" mono>
-              {stay.confirmation}
-            </Row>
+            <Row label="Confirmation">{stay.confirmation}</Row>
           ) : null}
         </dl>
 
@@ -111,27 +109,23 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
 
 function Row({
   label,
-  mono,
   children,
 }: {
   label: string;
-  mono?: boolean;
   children: React.ReactNode;
 }) {
+  // Mobile: wrapper is a normal block so the dt sits flush above the dd.
+  // Desktop: `sm:contents` removes the wrapper from the box tree so the
+  //          dt and dd participate directly in the parent grid.
   return (
-    <>
+    <div className="sm:contents">
       <dt className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55">
         {label}
       </dt>
-      <dd
-        className={cn(
-          "text-ink/85",
-          mono ? "font-sans text-xs uppercase tracking-widest2" : "font-sans"
-        )}
-      >
+      <dd className="mt-1 font-serif text-base italic font-light text-ink/85 sm:mt-0 sm:text-lg">
         {children}
       </dd>
-    </>
+    </div>
   );
 }
 

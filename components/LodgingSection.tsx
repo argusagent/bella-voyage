@@ -73,10 +73,6 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
           </p>
         ) : null}
 
-        {stay.address ? (
-          <p className="mt-3 font-sans text-sm text-ink/70">{stay.address}</p>
-        ) : null}
-
         {stay.blurb ? (
           <p className="mt-5 font-serif text-base italic font-light leading-relaxed text-ink/80 sm:text-lg">
             {stay.blurb}
@@ -87,6 +83,9 @@ function StayCard({ stay, index }: { stay: Stay; index: number }) {
         <dl className="mt-7 grid gap-y-3 border-t border-line/70 pt-5 text-sm sm:grid-cols-[max-content_1fr] sm:gap-x-8">
           <Row label="Check-in">{formatLongDate(stay.checkInISO)}</Row>
           <Row label="Check-out">{formatLongDate(stay.checkOutISO)}</Row>
+          {stay.address ? (
+            <Row label="Address">{stay.address}</Row>
+          ) : null}
           {stay.confirmation ? (
             <Row label="Confirmation" mono>
               {stay.confirmation}

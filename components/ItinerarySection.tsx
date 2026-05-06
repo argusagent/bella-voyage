@@ -8,7 +8,7 @@ import {
   type Activity,
 } from "@/lib/trip-data";
 import {
-  formatLongDate,
+  formatMonthDay,
   formatDayNumber,
   formatWeekday,
 } from "@/lib/format";
@@ -96,12 +96,9 @@ function DayRow({
           <p className="font-sans text-[11px] uppercase tracking-widest3 text-gold">
             {cityName}
           </p>
-          <span aria-hidden className="block h-3 w-px bg-ink/15" />
-          <p className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:hidden">
-            {formatLongDate(day.date).split(",")[0]}
-          </p>
+          <span aria-hidden className="hidden h-3 w-px bg-ink/15 sm:block" />
           <p className="hidden font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:block">
-            {formatLongDate(day.date)}
+            {formatMonthDay(day.date)}
           </p>
         </div>
 
@@ -110,7 +107,7 @@ function DayRow({
         </h3>
 
         {dayActivities.length > 0 ? (
-          <ul className="mt-5 space-y-5 border-l border-gold/40 pl-4 sm:mt-6 sm:space-y-6 sm:pl-5">
+          <ul className="mt-4 space-y-3 border-l border-gold/40 pl-4 sm:mt-5 sm:space-y-4 sm:pl-5">
             {dayActivities.map((a) => (
               <li key={a.id}>
                 {a.time ? (

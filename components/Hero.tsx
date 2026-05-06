@@ -20,7 +20,7 @@ export function Hero() {
     <section
       id="top"
       aria-label="Bella's Graduation Trip — overview"
-      className="relative flex flex-col items-center overflow-hidden px-6 pb-12 pt-20 sm:px-10 sm:pb-16 sm:pt-28"
+      className="relative flex flex-col items-center overflow-hidden px-6 pb-8 pt-10 sm:px-10 sm:pb-12 sm:pt-16"
     >
       {/* Soft paper-grain wash so the hero reads as a printed page */}
       <div
@@ -38,7 +38,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1], delay: 0.1 }}
-          className="mb-8 flex items-center justify-center gap-3 sm:mb-12 sm:gap-4"
+          className="mb-5 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4"
         >
           <span className="block h-px w-6 bg-gold/70 sm:w-14" />
           <span className="whitespace-nowrap font-sans text-[11px] uppercase tracking-widest text-ink/75 sm:text-xs sm:tracking-widest3">
@@ -49,7 +49,7 @@ export function Hero() {
 
         {/* Three-line title.  Each line reveals from below with overflow-hidden
             so the entrance feels like a stage curtain, not a fade.            */}
-        <h1 className="font-serif text-[clamp(40px,12vw,96px)] font-light leading-[0.95] tracking-tight text-ink">
+        <h1 className="font-serif text-[clamp(34px,10vw,88px)] font-light leading-[0.95] tracking-tight text-ink">
           {title.lines.map((line, idx) => (
             <span key={idx} className="block overflow-hidden pb-1 sm:pb-2">
               <motion.span
@@ -73,7 +73,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: 1.2 }}
-          className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:mt-14 sm:grid-cols-4 sm:gap-4"
+          className="mx-auto mt-6 grid max-w-3xl grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-4 sm:gap-4"
         >
           <Stat label="Days" value={timeline.length} />
           <Stat label="Nights" value={trip.nights} />
@@ -86,7 +86,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1], delay: 1.5 }}
-          className="mt-12 sm:mt-16"
+          className="mt-8 sm:mt-12"
         >
           <Countdown variant="statement" />
         </motion.div>
@@ -110,7 +110,7 @@ function Stat({
       className={[
         "group relative overflow-hidden border border-line",
         "bg-gradient-to-br from-paper-warm via-paper-warm to-paper-soft/70",
-        "px-4 py-6 sm:px-6 sm:py-8",
+        "px-4 py-4 sm:px-6 sm:py-6",
         "shadow-[0_12px_32px_-14px_rgba(10,8,7,0.28),0_3px_6px_-2px_rgba(10,8,7,0.10)]",
         "transition-all duration-300",
         "hover:-translate-y-0.5 hover:shadow-[0_20px_44px_-20px_rgba(10,8,7,0.36),0_5px_10px_-2px_rgba(10,8,7,0.12)]",
@@ -123,7 +123,7 @@ function Stat({
       <dt className="font-sans text-[11px] uppercase tracking-widest3 text-ink/55 sm:text-xs">
         {label}
       </dt>
-      <dd className="mt-3 font-serif text-5xl font-medium leading-none text-ink sm:mt-4 sm:text-6xl">
+      <dd className="mt-2 font-serif text-5xl font-light leading-none text-ink sm:mt-3 sm:text-6xl">
         {value}
       </dd>
     </div>

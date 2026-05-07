@@ -13,8 +13,8 @@ export type Flight = {
   id: string;
   airline: string;
   flightNumber: string; // "DL 84"
-  origin: { code: string; name: string };
-  destination: { code: string; name: string };
+  origin: { code: string; name: string; timeZone: string };
+  destination: { code: string; name: string; timeZone: string };
   departISO: string; // "2026-06-03T17:35:00-04:00"
   arriveISO: string;
   cabin?: string;
@@ -137,8 +137,8 @@ export const flights: Flight[] = [
     id: "out-ind-dtw",
     airline: "Delta",
     flightNumber: "DL 3994",
-    origin: { code: "IND", name: "Indianapolis" },
-    destination: { code: "DTW", name: "Detroit" },
+    origin: { code: "IND", name: "Indianapolis", timeZone: "America/Indiana/Indianapolis" },
+    destination: { code: "DTW", name: "Detroit", timeZone: "America/Detroit" },
     departISO: "2026-06-03T15:59:00-04:00",
     arriveISO: "2026-06-03T17:10:00-04:00",
   },
@@ -146,8 +146,8 @@ export const flights: Flight[] = [
     id: "out-dtw-cdg",
     airline: "Delta",
     flightNumber: "DL 228",
-    origin: { code: "DTW", name: "Detroit" },
-    destination: { code: "CDG", name: "Paris · Charles de Gaulle" },
+    origin: { code: "DTW", name: "Detroit", timeZone: "America/Detroit" },
+    destination: { code: "CDG", name: "Paris · Charles de Gaulle", timeZone: "Europe/Paris" },
     departISO: "2026-06-03T18:30:00-04:00",
     arriveISO: "2026-06-04T08:40:00+02:00",
   },
@@ -155,8 +155,8 @@ export const flights: Flight[] = [
     id: "rtn-gva-lhr",
     airline: "American Airlines",
     flightNumber: "AA 6872",
-    origin: { code: "GVA", name: "Geneva" },
-    destination: { code: "LHR", name: "London · Heathrow" },
+    origin: { code: "GVA", name: "Geneva", timeZone: "Europe/Zurich" },
+    destination: { code: "LHR", name: "London · Heathrow", timeZone: "Europe/London" },
     departISO: "2026-06-11T10:10:00+02:00",
     arriveISO: "2026-06-11T10:55:00+01:00",
   },
@@ -164,17 +164,17 @@ export const flights: Flight[] = [
     id: "rtn-lhr-ord",
     airline: "American Airlines",
     flightNumber: "AA 7017",
-    origin: { code: "LHR", name: "London · Heathrow" },
-    destination: { code: "ORD", name: "Chicago · O'Hare" },
+    origin: { code: "LHR", name: "London · Heathrow", timeZone: "Europe/London" },
+    destination: { code: "ORD", name: "Chicago · O'Hare", timeZone: "America/Chicago" },
     departISO: "2026-06-11T13:10:00+01:00",
-    arriveISO: "2026-06-11T16:55:00-05:00",
+    arriveISO: "2026-06-11T15:55:00-05:00",
   },
   {
     id: "rtn-ord-ind",
     airline: "American Airlines",
     flightNumber: "AA 1951",
-    origin: { code: "ORD", name: "Chicago · O'Hare" },
-    destination: { code: "IND", name: "Indianapolis" },
+    origin: { code: "ORD", name: "Chicago · O'Hare", timeZone: "America/Chicago" },
+    destination: { code: "IND", name: "Indianapolis", timeZone: "America/Indiana/Indianapolis" },
     departISO: "2026-06-11T17:50:00-05:00",
     arriveISO: "2026-06-11T20:00:00-04:00",
   },

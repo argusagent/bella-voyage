@@ -455,7 +455,7 @@ export const activities: Activity[] = [
     city: "beaune",
     date: "2026-06-07",
     time: "Afternoon & evening",
-    title: "Wander the old town — ramparts and the Hospices roof",
+    title: "Wander the old town — ramparts and the Hospices",
   },
 
   // ── Monday, June 8 — Côte de Beaune ─────────────────────────────────────
@@ -471,7 +471,7 @@ export const activities: Activity[] = [
     city: "beaune",
     date: "2026-06-08",
     time: "Mid-morning",
-    title: "Hospices de Beaune & the polychrome roof",
+    title: "Hospices de Beaune",
   },
   {
     id: "marche-aux-vins-jun-8",

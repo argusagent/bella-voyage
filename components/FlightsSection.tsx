@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { flights, type Flight } from "@/lib/trip-data";
 import {
   formatLongDate,
-  formatTime24,
+  formatTimeLocal,
   cn,
 } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
@@ -107,8 +107,11 @@ function PlaneIcon() {
 }
 
 function FlightCard({ flight, index }: { flight: Flight; index: number }) {
-  const departTime = formatTime24(flight.departISO);
-  const arriveTime = formatTime24(flight.arriveISO);
+  // Render each clock in the airport's own time zone so the depart/arrive
+  // numbers match the boarding-pass values regardless of where the viewer
+  // happens to be sitting when they open the page.
+  const departTime = formatTimeLocal(flight.departISO, flight.origin.timeZone);
+  const arriveTime = formatTimeLocal(flight.arriveISO, flight.destination.timeZone);
   const sameDay = flight.departISO.slice(0, 10) === flight.arriveISO.slice(0, 10);
 
   return (

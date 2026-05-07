@@ -216,13 +216,11 @@ export const stays: Stay[] = [
     confirmation: "HMCHCZWRBZ",
     blurb:
       "Loft Airbnb in the centre of Beaune, a few blocks from the Hospices and the cellars.",
-    // To enable the photo carousel, drop high-resolution JPGs into
-    // public/images/beaune/ at the filenames below and uncomment the
-    // entries.  Order here = render order in the carousel.
     images: [
-      // { src: "/images/beaune/airbnb-1.jpg", alt: "Loft interior", width: 1600, height: 1067 },
-      // { src: "/images/beaune/airbnb-2.jpg", alt: "Living area", width: 1600, height: 1067 },
-      // { src: "/images/beaune/airbnb-3.jpg", alt: "Bedroom", width: 1600, height: 1067 },
+      { src: "/images/beaune/airbnb-1.jpg", alt: "Loft living area with stone alcove and wood-beam wall", width: 540, height: 405 },
+      { src: "/images/beaune/airbnb-2.jpg", alt: "Rooftop view of a Beaune street and tower", width: 1440, height: 1080 },
+      { src: "/images/beaune/airbnb-3.jpg", alt: "Loft sitting nook under a skylight with a small fireplace", width: 1080, height: 810 },
+      { src: "/images/beaune/airbnb-4.jpg", alt: "Bathroom with corner tub under the eaves", width: 1440, height: 1080 },
     ],
   },
   {

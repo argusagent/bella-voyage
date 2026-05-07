@@ -38,7 +38,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1], delay: 0.1 }}
-          className="mb-5 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4"
+          className="mb-2 flex items-center justify-center gap-3 sm:gap-4"
         >
           <span className="block h-px w-6 bg-gold/70 sm:w-14" />
           <span className="whitespace-nowrap font-sans text-[11px] uppercase tracking-widest text-ink/75 sm:text-xs sm:tracking-widest3">
@@ -46,6 +46,15 @@ export function Hero() {
           </span>
           <span className="block h-px w-6 bg-gold/70 sm:w-14" />
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1], delay: 0.22 }}
+          className="mb-5 font-serif text-xl italic font-light text-ink/75 sm:mb-8 sm:text-2xl"
+        >
+          For <span className="text-gold">2</span>
+        </motion.p>
 
         {/* Three-line title.  Each line reveals from below with overflow-hidden
             so the entrance feels like a stage curtain, not a fade.            */}
